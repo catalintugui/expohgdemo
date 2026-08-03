@@ -1,4 +1,6 @@
 export function Footer() {
+  const fullDate = new Date;
+  const year= fullDate.getFullYear()
   return (
     <footer className="footer">
       <div className="container footer__inner">
@@ -7,8 +9,8 @@ export function Footer() {
           <span />
           <span />
         </div>
-        <span>© 2026 Haralamb Georgescu</span>
-        <span>Bucharest</span>
+        <span>© {year} Haralamb Georgescu</span>
+        <span>Bucharest, Romania</span>
       </div>
     </footer>
   )

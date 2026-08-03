@@ -13,47 +13,55 @@ const IMAGES = [
 ]
 
 const FLASH_MS = 180
-const WALL_REPEAT = 1200
+const WALL_REPEAT = 800
 const PHRASE =
   'Arhiva Haralamb H. (Bubi) Georgescu • În curând • Harlan H. (Bubi) Georgesco Archive • Coming Soon •'
 
+function snapWall(band: HTMLElement) {
+  const wallEl = band.querySelector<HTMLElement>('.coming-soon__wall')
+  if (!wallEl) return
+
+  wallEl.style.lineHeight = ''
+  wallEl.style.maxHeight = ''
+  wallEl.style.visibility = ''
+
+  const fontSize = parseFloat(getComputedStyle(wallEl).fontSize)
+  if (!Number.isFinite(fontSize) || fontSize <= 0) return
+
+  const lineHeight = Math.max(1, Math.round(fontSize * 1.2))
+  wallEl.style.lineHeight = `${lineHeight}px`
+
+  // Whole lines only, hard clip — no ellipsis.
+  const lines = Math.max(0, Math.floor(band.clientHeight / lineHeight))
+  if (lines === 0) {
+    wallEl.style.visibility = 'hidden'
+    wallEl.style.maxHeight = '0px'
+    return
+  }
+
+  wallEl.style.maxHeight = `${lines * lineHeight}px`
+}
+
 export function ComingSoon() {
   const [index, setIndex] = useState(0)
-  const stageRef = useRef<HTMLDivElement>(null)
-  const wallRef = useRef<HTMLParagraphElement>(null)
-  const windowRef = useRef<HTMLDivElement>(null)
+  const topRef = useRef<HTMLDivElement>(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
   const wall = Array.from({ length: WALL_REPEAT }, () => PHRASE).join(' ')
 
   useLayoutEffect(() => {
-    const stage = stageRef.current
-    const wallEl = wallRef.current
-    const win = windowRef.current
-    if (!stage || !wallEl || !win) return
+    const bands = [topRef.current, bottomRef.current].filter(
+      (el): el is HTMLDivElement => Boolean(el),
+    )
+    if (!bands.length) return
 
     const sync = () => {
-      // Keep the window CSS-centered; only snap height + shift the text grid.
-      win.style.height = ''
-      wallEl.style.paddingTop = ''
-
-      const lineHeight = parseFloat(getComputedStyle(wallEl).lineHeight)
-      if (!Number.isFinite(lineHeight) || lineHeight <= 0) return
-
-      const stageH = stage.clientHeight
-      const preferredH = win.offsetHeight
-      const height = Math.max(
-        lineHeight,
-        Math.round(preferredH / lineHeight) * lineHeight,
-      )
-      win.style.height = `${height}px`
-
-      const top = (stageH - height) / 2
-      const offset = top - Math.floor(top / lineHeight) * lineHeight
-      wallEl.style.paddingTop = `${offset}px`
+      for (const band of bands) snapWall(band)
     }
 
     sync()
     const ro = new ResizeObserver(sync)
-    ro.observe(stage)
+    for (const band of bands) ro.observe(band)
+    document.fonts?.ready?.then(sync)
     window.addEventListener('resize', sync)
 
     return () => {
@@ -76,11 +84,17 @@ export function ComingSoon() {
   return (
     <section className="coming-soon" aria-label="Coming Soon">
       <h2 className="visually-hidden">{PHRASE}</h2>
-      <div className="container coming-soon__stage" ref={stageRef}>
-        <p className="coming-soon__wall" ref={wallRef} aria-hidden="true">
-          {wall}
-        </p>
-        <div className="coming-soon__window" ref={windowRef}>
+      <div className="container coming-soon__inner">
+        <div
+          className="coming-soon__band coming-soon__band--top"
+          ref={topRef}
+        >
+          <p className="coming-soon__wall" aria-hidden="true">
+            {wall}
+          </p>
+        </div>
+
+        <div className="coming-soon__window" aria-hidden="true">
           {IMAGES.map((src, i) => (
             <img
               key={src}
@@ -90,6 +104,15 @@ export function ComingSoon() {
               draggable={false}
             />
           ))}
+        </div>
+
+        <div
+          className="coming-soon__band coming-soon__band--bottom"
+          ref={bottomRef}
+        >
+          <p className="coming-soon__wall" aria-hidden="true">
+            {wall}
+          </p>
         </div>
       </div>
     </section>

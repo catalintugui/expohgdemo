@@ -27,6 +27,8 @@
 
   --max-width: 68rem;
   --header-height: 3.5rem;
+  --wall-size: clamp(0.7rem, 1.6vw, 0.95rem);
+  --wall-lh: 1.2;
 
   /* breakpoints: sm < 40rem, md 40–64rem, lg ≥ 64rem */
 }
@@ -41,11 +43,16 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-padding-top: calc(var(--header-height) + var(--space-sm));
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body {
   margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
   font-family: var(--font);
   font-size: var(--size-base);
   font-weight: 300;
@@ -56,7 +63,8 @@ body {
 }
 
 #root {
-  min-height: 100svh;
+  height: 100%;
+  overflow: hidden;
 }
 
 h1,
@@ -116,15 +124,24 @@ button {
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
+  height: 100svh;
+  max-height: 100svh;
+  overflow: hidden;
 }
 
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-x: clip;
+  overflow: hidden;
   min-height: 0;
+  padding-block: var(--space-sm);
+}
+
+@media (min-width: 48rem) {
+  .main {
+    padding-block: var(--space-md);
+  }
 }
 
 .visually-hidden {
@@ -139,73 +156,95 @@ button {
   border: 0;
 }
 
-/* Coming soon */
+/* Coming soon — 3 stacked sections: text / image / text (no overlap) */
 
 .coming-soon {
-  --window-w: min(78%, 36rem);
-  --window-h: min(58vw, 27rem);
-  --wall-size: clamp(0.7rem, 1.6vw, 0.95rem);
-  --wall-lh: 1.2;
-  --stage-h: calc(100svh - 7.5rem);
+  --window-h: min(36vh, 18rem);
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  min-height: var(--stage-h);
+  overflow: hidden;
 }
 
 @media (min-width: 48rem) {
   .coming-soon {
-    --window-w: min(62%, 40rem);
-    --window-h: min(42vw, 30rem);
+    --window-h: min(40vh, 24rem);
   }
 }
 
-.coming-soon__stage {
-  position: relative;
-  overflow: hidden;
+.coming-soon__inner {
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  height: var(--stage-h);
-  min-height: var(--stage-h);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) var(--window-h) minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.coming-soon__band {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.coming-soon__band--top {
+  justify-content: flex-start;
+}
+
+.coming-soon__band--bottom {
+  justify-content: flex-end;
 }
 
 .coming-soon__wall {
   margin: 0;
   width: 100%;
-  height: 100%;
   overflow: hidden;
+  text-overflow: clip;
   font-family: var(--font);
   font-weight: 300;
   font-size: var(--wall-size);
-  line-height: var(--wall-lh);
+  line-height: 1.2;
   letter-spacing: 0.02em;
   text-align: justify;
   text-transform: none;
   color: var(--ink);
   word-break: break-word;
   hyphens: auto;
+  background: var(--bg);
 }
 
 .coming-soon__window {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  width: var(--window-w);
-  height: var(--window-h);
-  transform: translate(-50%, -50%);
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   background: var(--bg);
+  /* Cover any subpixel text bleed from neighboring rows */
+  box-shadow: 0 0 0 2px var(--bg);
 }
 
 .coming-soon__window img {
   position: absolute;
-  inset: 30px;
-  width: calc(100% - 60px);
-  height: calc(100% - 60px);
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   object-fit: cover;
+  object-position: center;
   opacity: 0;
   pointer-events: none;
   user-select: none;
+  background: var(--bg);
 }
 
 .coming-soon__window img.is-active {
@@ -266,6 +305,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 10;
+  flex-shrink: 0;
   border-bottom: 1px solid var(--line);
   background: var(--bg);
   padding-top: env(safe-area-inset-top, 0px);
@@ -1082,15 +1122,21 @@ button {
 /* Footer */
 
 .footer {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
   border-top: 1px solid var(--line);
-  padding-block: var(--space-md);
-  padding-bottom: max(var(--space-md), env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
+  padding-block: var(--space-sm);
+  padding-bottom: max(var(--space-sm), env(safe-area-inset-bottom, 0px));
 }
 
 .footer__inner {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--space-sm);
   font-size: var(--size-xs);
   letter-spacing: 0.08em;
@@ -1098,11 +1144,9 @@ button {
 }
 
 @media (min-width: 40rem) {
-  .footer__inner {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+  .footer {
+    padding-block: var(--space-md);
+    padding-bottom: max(var(--space-md), env(safe-area-inset-bottom, 0px));
   }
 }
 
