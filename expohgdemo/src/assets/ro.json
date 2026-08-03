@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "title": "Arhiva Haralamb Georgescu",
+    "description": "Arhiva Haralamb Georgescu // lucrări şi detalii"
+  },
+  "architect": {
+    "name": "Haralamb Georgescu",
+    "tagline": "lucrări şi detalii",
+    "location": "Bucureşti"
+  },
+  "common": {
+    "copyright": "© 2026"
+  }
+}
