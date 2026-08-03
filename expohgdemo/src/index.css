@@ -124,6 +124,98 @@ button {
   display: flex;
   flex-direction: column;
   overflow-x: clip;
+  min-height: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Coming soon */
+
+.coming-soon {
+  --window-w: min(78%, 36rem);
+  --window-h: min(58vw, 27rem);
+  --wall-size: clamp(0.7rem, 1.6vw, 0.95rem);
+  --wall-lh: 1.2;
+  --stage-h: calc(100svh - 7.5rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: var(--stage-h);
+}
+
+@media (min-width: 48rem) {
+  .coming-soon {
+    --window-w: min(62%, 40rem);
+    --window-h: min(42vw, 30rem);
+  }
+}
+
+.coming-soon__stage {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: var(--stage-h);
+  min-height: var(--stage-h);
+}
+
+.coming-soon__wall {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: var(--wall-size);
+  line-height: var(--wall-lh);
+  letter-spacing: 0.02em;
+  text-align: justify;
+  text-transform: none;
+  color: var(--ink);
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.coming-soon__window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: var(--window-w);
+  height: var(--window-h);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.coming-soon__window img {
+  position: absolute;
+  inset: 30px;
+  width: calc(100% - 60px);
+  height: calc(100% - 60px);
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.coming-soon__window img.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coming-soon__window img:first-child {
+    opacity: 1;
+  }
 }
 
 .container {

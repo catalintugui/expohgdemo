@@ -1,5 +1,3 @@
-import { content } from '../content'
-
 export function Footer() {
   return (
     <footer className="footer">
@@ -9,10 +7,8 @@ export function Footer() {
           <span />
           <span />
         </div>
-        <span>
-          {content.common.copyright} {content.architect.name}
-        </span>
-        <span>{content.architect.location}</span>
+        <span>© 2026 Haralamb Georgescu</span>
+        <span>Bucharest</span>
       </div>
     </footer>
   )
