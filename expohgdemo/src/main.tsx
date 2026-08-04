@@ -10,7 +10,7 @@ const description = document.querySelector('meta[name="description"]')
 if (description) {
   description.setAttribute(
     'content',
-    'Arhiva Haralamb Georgescu // work and details',
+    'Arhiva Digitală Haralamb Georgescu // work and details',
   )
 }
 
