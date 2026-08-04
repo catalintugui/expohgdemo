@@ -13,54 +13,50 @@ const IMAGES = [
 ]
 
 const FLASH_MS = 180
-const WALL_REPEAT = 800
+const WALL_REPEAT = 1200
 const PHRASE =
   'Arhiva Haralamb H. (Bubi) Georgescu • În curând • Harlan H. (Bubi) Georgesco Archive • Coming Soon •'
 
-function snapWall(band: HTMLElement) {
-  const wallEl = band.querySelector<HTMLElement>('.coming-soon__wall')
-  if (!wallEl) return
-
-  wallEl.style.lineHeight = ''
-  wallEl.style.maxHeight = ''
-  wallEl.style.visibility = ''
-
-  const fontSize = parseFloat(getComputedStyle(wallEl).fontSize)
-  if (!Number.isFinite(fontSize) || fontSize <= 0) return
-
-  const lineHeight = Math.max(1, Math.round(fontSize * 1.2))
-  wallEl.style.lineHeight = `${lineHeight}px`
-
-  // Whole lines only, hard clip — no ellipsis.
-  const lines = Math.max(0, Math.floor(band.clientHeight / lineHeight))
-  if (lines === 0) {
-    wallEl.style.visibility = 'hidden'
-    wallEl.style.maxHeight = '0px'
-    return
-  }
-
-  wallEl.style.maxHeight = `${lines * lineHeight}px`
-}
-
 export function ComingSoon() {
   const [index, setIndex] = useState(0)
-  const topRef = useRef<HTMLDivElement>(null)
-  const bottomRef = useRef<HTMLDivElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
+  const wallRef = useRef<HTMLParagraphElement>(null)
+  const windowRef = useRef<HTMLDivElement>(null)
   const wall = Array.from({ length: WALL_REPEAT }, () => PHRASE).join(' ')
 
   useLayoutEffect(() => {
-    const bands = [topRef.current, bottomRef.current].filter(
-      (el): el is HTMLDivElement => Boolean(el),
-    )
-    if (!bands.length) return
+    const stage = stageRef.current
+    const wallEl = wallRef.current
+    const win = windowRef.current
+    if (!stage || !wallEl || !win) return
 
     const sync = () => {
-      for (const band of bands) snapWall(band)
+      win.style.top = ''
+      win.style.height = ''
+      wallEl.style.lineHeight = ''
+
+      const fontSize = parseFloat(getComputedStyle(wallEl).fontSize)
+      if (!Number.isFinite(fontSize) || fontSize <= 0) return
+
+      // Integer px line boxes so the window sits exactly between rows.
+      const lineHeight = Math.max(1, Math.round(fontSize * 1.2))
+      wallEl.style.lineHeight = `${lineHeight}px`
+
+      const stageH = stage.clientHeight
+      const preferredH = win.offsetHeight
+      const height =
+        Math.max(1, Math.round(preferredH / lineHeight)) * lineHeight
+      const top =
+        Math.max(0, Math.floor((stageH - height) / 2 / lineHeight)) *
+        lineHeight
+
+      win.style.top = `${top}px`
+      win.style.height = `${height}px`
     }
 
     sync()
     const ro = new ResizeObserver(sync)
-    for (const band of bands) ro.observe(band)
+    ro.observe(stage)
     document.fonts?.ready?.then(sync)
     window.addEventListener('resize', sync)
 
@@ -84,35 +80,20 @@ export function ComingSoon() {
   return (
     <section className="coming-soon" aria-label="Coming Soon">
       <h2 className="visually-hidden">{PHRASE}</h2>
-      <div className="container coming-soon__inner">
-        <div
-          className="coming-soon__band coming-soon__band--top"
-          ref={topRef}
-        >
-          <p className="coming-soon__wall" aria-hidden="true">
-            {wall}
-          </p>
-        </div>
-
-        <div className="coming-soon__window" aria-hidden="true">
+      <div className="container coming-soon__stage" ref={stageRef}>
+        <p className="coming-soon__wall" ref={wallRef} aria-hidden="true">
+          {wall}
+        </p>
+        <div className="coming-soon__window" ref={windowRef} aria-hidden="true">
           {IMAGES.map((src, i) => (
             <img
               key={src}
               src={src}
               alt=""
-              className={i === index ? 'is-active' : undefined}
+              className={i === index ? 'is-active padded' : 'padded'}
               draggable={false}
             />
           ))}
-        </div>
-
-        <div
-          className="coming-soon__band coming-soon__band--bottom"
-          ref={bottomRef}
-        >
-          <p className="coming-soon__wall" aria-hidden="true">
-            {wall}
-          </p>
         </div>
       </div>
     </section>
