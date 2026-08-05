@@ -27,7 +27,7 @@ export function Footer() {
             />
           </a>
         </div>
-        <span className="footer__meta">{year} // Bucureşti, România</span>
+        <span className="footer__meta">{year} // Bucureşti // România</span>
         <a
           className="footer__follow"
           href="https://www.instagram.com/haralambgeorgescu?igsh=NnpwNXdheDk0b2Ft"
