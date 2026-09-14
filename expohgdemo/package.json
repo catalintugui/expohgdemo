@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:prd": "bash scripts/build-prd.sh",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:prd": "vite preview --mode production"
   },
   "dependencies": {
     "react": "^19.2.8",

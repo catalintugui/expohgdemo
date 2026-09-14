@@ -1,0 +1,19 @@
+{
+  "name": "Arhiva Digitală Haralamb Georgescu",
+  "short_name": "Arhiva Digitală",
+  "description": "Arhiva digitală a arhitectului Haralamb H. (Bubi) Georgescu — în curând.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ebe8e1",
+  "theme_color": "#1a1a1a",
+  "lang": "ro",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
