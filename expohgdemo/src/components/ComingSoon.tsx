@@ -34,6 +34,7 @@ export function ComingSoon() {
       win.style.top = ''
       win.style.height = ''
       wallEl.style.lineHeight = ''
+      wallEl.style.maxHeight = ''
 
       const fontSize = parseFloat(getComputedStyle(wallEl).fontSize)
       if (!Number.isFinite(fontSize) || fontSize <= 0) return
@@ -43,6 +44,10 @@ export function ComingSoon() {
       wallEl.style.lineHeight = `${lineHeight}px`
 
       const stageH = stage.clientHeight
+      const lines = Math.max(0, Math.floor(stageH / lineHeight))
+      // Whole lines only — clip the last partial row instead of cutting it.
+      wallEl.style.maxHeight = lines > 0 ? `${lines * lineHeight}px` : '0px'
+
       const preferredH = win.offsetHeight
       const height =
         Math.max(1, Math.round(preferredH / lineHeight)) * lineHeight
