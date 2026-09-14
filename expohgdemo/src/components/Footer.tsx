@@ -30,7 +30,7 @@ export function Footer() {
         <span className="footer__meta">{year} // Bucureşti // România</span>
         <a
           className="footer__follow"
-          href="https://www.instagram.com/haralambgeorgescu?igsh=NnpwNXdheDk0b2Ft"
+          href="https://www.instagram.com/arhivaharalambgeorgescu"
           target="_blank"
           rel="noopener noreferrer"
         >
