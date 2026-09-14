@@ -12,7 +12,7 @@ export function Footer() {
           </div>
           <div className="footer__credit-text">
             <span>Proiect cultural</span>
-            <span>susținut de</span>
+            <span>finanțat de</span>
           </div>
           <a
             className="footer__uar-link"
