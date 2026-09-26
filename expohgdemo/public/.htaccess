@@ -1,0 +1,25 @@
+# Hostico / Apache — keep this file in public_html so the 404
+# setting is not lost when you overwrite the site files.
+#
+# In Hostico cPanel → Error Pages, you can leave defaults;
+# this directive is enough if ErrorDocument is allowed.
+
+Options -Indexes
+
+# Single-page app: serve index.html for unknown paths when the
+# request is not for a real file/folder or the 404 page itself.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Do not rewrite the custom error document
+  RewriteRule ^404\.shtml$ - [L]
+
+  # Existing files and directories as-is
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Custom 404 (Hostico often uses ErrorDocument; this survives deploys)
+ErrorDocument 404 /404.shtml
