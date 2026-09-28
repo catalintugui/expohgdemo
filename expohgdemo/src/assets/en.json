@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "Arhiva Digitală Haralamb Georgescu",
+    "description": "Arhiva digitală a arhitectului Haralamb H. (Bubi) Georgescu. Proiect cultural finanțat de Uniunea Arhitecților din România."
+  },
+  "nav": {
+    "homepage": "Homepage",
+    "exhibition": "Exhibition",
+    "work": "Work",
+    "workRomania": "1933 - 1947 | ROMANIA",
+    "workSua": "1947 - 1977 | USA",
+    "about": "About us",
+    "mainAria": "Main",
+    "languageAria": "Language"
+  },
+  "lang": {
+    "en": "EN",
+    "ro": "RO"
+  },
+  "architect": {
+    "name": "Haralamb Georgescu",
+    "tagline": "Work and Details"
+  },
+  "exhibition": {
+    "title": "",
+    "dates": "29 October — 19 November 2026",
+    "venue": "Mincu Gallery, Universitatea de Arhitectură și Urbanism „Ion Mincu”",
+    "street": "",
+    "city": "Bucharest",
+    "admission": "Free admission",
+    "opening": "29 October 2026, 18:00",
+    "statement": [
+      "The exhibition brings to the fore the work of architect Haralamb H. (Bubi) Georgescu, tracing his professional path between interwar Romania and the postwar United States.",
+      "From the projects carried out in Romania — including collaborations with Horia Creangă — to his later activity in the United States, the exhibition brings together archival drawings, photographs, documents, and materials from recent research, proposing a comparative reading of the two stages of his practice.",
+      "The exhibition is part of a broader effort to research, document, and recover the work of Haralamb Georgescu, continued through the Haralamb H. Georgescu Archive, a digital archive dedicated to projects and documents identified in Romania and in the United States of America."
+    ]
+  },
+  "exhibitionPage": {
+    "heading": "Exhibition",
+    "lead": "The work of architect Haralamb H. (Bubi) Georgescu, between interwar Romania and the postwar United States.",
+    "statement": "About the exhibition",
+    "visit": "Visit",
+    "opening": "Opening",
+    "hours": "Hours",
+    "days": "",
+    "time": "",
+    "closedMondays": "",
+    "address": "Location",
+    "admission": "Admission",
+    "tickets": "Entrance",
+    "freeUnder18": ""
+  },
+  "workCategories": {
+    "housing": "Housing",
+    "publicBuildings": "Public Buildings",
+    "exhibitionCompetitions": "Exhibition and Competitions",
+    "design": "Design"
+  },
+  "unavailable": {
+    "message": "Available from 29th october 2026"
+  }
+}

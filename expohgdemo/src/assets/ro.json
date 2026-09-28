@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "Arhiva Digitală Haralamb Georgescu",
+    "description": "Arhiva digitală a arhitectului Haralamb H. (Bubi) Georgescu. Proiect cultural finanțat de Uniunea Arhitecților din România."
+  },
+  "nav": {
+    "homepage": "Acasă",
+    "exhibition": "Expoziție",
+    "work": "Lucrări",
+    "workRomania": "1933 - 1947 | România",
+    "workSua": "1947 - 1977 | SUA",
+    "about": "Despre noi",
+    "mainAria": "Principal",
+    "languageAria": "Limbă"
+  },
+  "lang": {
+    "en": "EN",
+    "ro": "RO"
+  },
+  "architect": {
+    "name": "Haralamb Georgescu",
+    "tagline": "lucrări şi detalii"
+  },
+  "exhibition": {
+    "title": "",
+    "dates": "29 octombrie – 19 noiembrie 2026",
+    "venue": "Mincu Gallery, Universitatea de Arhitectură și Urbanism „Ion Mincu”",
+    "street": "",
+    "city": "București",
+    "admission": "Intrare liberă",
+    "opening": "29 octombrie 2026, ora 18:00",
+    "statement": [
+      "Expoziția aduce în prim-plan opera arhitectului Haralamb H. (Bubi) Georgescu, urmărind parcursul său profesional între România interbelică și Statele Unite ale Americii postbelice.",
+      "De la proiectele realizate în România, inclusiv colaborările cu Horia Creangă, până la activitatea desfășurată ulterior în Statele Unite, expoziția reunește desene de arhivă, fotografii, documente și materiale rezultate din cercetări recente, propunând o lectură comparativă a celor două etape ale activității sale.",
+      "Expoziția face parte dintr-un demers mai amplu de cercetare, documentare și recuperare a operei lui Haralamb Georgescu, continuat prin Arhiva Haralamb H. Georgescu, o arhivă digitală dedicată proiectelor și documentelor identificate în România și în Statele Unite ale Americii."
+    ]
+  },
+  "exhibitionPage": {
+    "heading": "Expoziție",
+    "lead": "Opera arhitectului Haralamb H. (Bubi) Georgescu, între România interbelică și Statele Unite postbelice.",
+    "statement": "Despre expoziție",
+    "visit": "Vizită",
+    "opening": "Vernisaj",
+    "hours": "Program",
+    "days": "",
+    "time": "",
+    "closedMondays": "",
+    "address": "Locație",
+    "admission": "Intrare",
+    "tickets": "Acces",
+    "freeUnder18": ""
+  },
+  "workCategories": {
+    "housing": "Locuire",
+    "publicBuildings": "Edificii Publice",
+    "exhibitionCompetitions": "Expoziții și Concursuri",
+    "design": "Amenajări"
+  },
+  "unavailable": {
+    "message": "Available from 29th october 2026"
+  }
+}
