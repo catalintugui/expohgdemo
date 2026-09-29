@@ -12,7 +12,6 @@
   --bauhaus-yellow: #c9a227;
 
   --font: 'Jost', system-ui, sans-serif;
-  /* Mobile type scale (20% smaller); restored at 48rem */
   --size-xs: 0.75rem;
   --size-sm: 0.9rem;
   --size-base: 0.975rem;
@@ -32,16 +31,6 @@
   --wall-lh: 1.2;
 
   /* breakpoints: sm < 40rem, md 40–64rem, lg ≥ 64rem */
-}
-
-@media (min-width: 48rem) {
-  :root {
-    --size-xs: 0.9375rem;
-    --size-sm: 1.125rem;
-    --size-base: 1.21875rem;
-    --size-md: 1.40625rem;
-    --size-lg: 1.6875rem;
-  }
 }
 
 *,
