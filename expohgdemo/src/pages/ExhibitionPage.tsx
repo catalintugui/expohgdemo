@@ -1,4 +1,5 @@
 import { BauhausAccent } from '../components/BauhausAccent'
+import { ExhibitionEventLink } from '../components/ExhibitionEventLink'
 import { useTranslation } from '../i18n/I18nContext'
 
 export function ExhibitionPage() {
@@ -62,6 +63,7 @@ export function ExhibitionPage() {
               </p>
             </div>
           </div>
+          <ExhibitionEventLink />
         </div>
       </section>
     </>

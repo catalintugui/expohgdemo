@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
+import { AboutPage } from './pages/AboutPage'
 import { ExhibitionPage } from './pages/ExhibitionPage'
 import { HomePage } from './pages/HomePage'
 import { UnavailablePage } from './pages/UnavailablePage'
@@ -10,7 +11,7 @@ function App() {
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="exhibition" element={<ExhibitionPage />} />
-        <Route path="about" element={<UnavailablePage />} />
+        <Route path="about" element={<AboutPage />} />
         <Route path="work/romania/:category" element={<UnavailablePage />} />
         <Route path="work/usa/:category" element={<UnavailablePage />} />
         <Route

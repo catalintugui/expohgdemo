@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Arhiva Digitală Haralamb Georgescu",
-    "description": "Arhiva digitală a arhitectului Haralamb H. (Bubi) Georgescu. Proiect cultural finanțat de Uniunea Arhitecților din România."
+    "description": "Arhiva digitală a arhitectului Haralamb H. (Bubi) Georgescu. Arhivă digitală finanțată de Uniunea Arhitecților din România."
   },
   "nav": {
     "homepage": "Acasă",
@@ -19,7 +19,7 @@
   },
   "architect": {
     "name": "Haralamb Georgescu",
-    "tagline": "lucrări şi detalii"
+    "tagline": "arhiva"
   },
   "exhibition": {
     "title": "",
@@ -57,6 +57,57 @@
     "design": "Amenajări"
   },
   "unavailable": {
-    "message": "Available from 29th october 2026"
+    "message": "Disponibil din 29 octombrie 2026"
+  },
+  "aboutPage": {
+    "heading": "Despre",
+    "metaRole": "Arhivă digitală",
+    "metaYears": "1933–1977",
+    "lead": "O platformă digitală de cercetare dedicată documentării și recuperării critice a operei arhitectului Haralamb H. (Bubi) Georgescu.",
+    "archiveHeading": "Arhiva",
+    "intro": [
+      "Arhiva Haralamb H. (Bubi) Georgescu este o platformă digitală de cercetare dedicată documentării și recuperării critice a operei arhitectului Haralamb H. (Bubi) Georgescu (1908–1977), a cărui activitate profesională s-a desfășurat între România și Statele Unite ale Americii.",
+      "Inițiativa are la bază o cercetare desfășurată în arhive publice și private aferente celor două contexte geografice și pune în relație surse documentare, desene de arhitectură, fotografii, proiecte construite și nerealizate, cercetări de teren, interviuri și corespondență. Prin corelarea acestora se urmărește reconstruirea unui parcurs profesional fragmentat geografic și documentar și conturarea unei perspective de ansamblu asupra arhitecturii lui Bubi Georgescu.",
+      "Platforma este concepută ca un instrument de cercetare în continuă dezvoltare. Documentarea clădirilor păstrate, analiza surselor originale, redesenarea unei părți a documentației și recuperarea memoriei profesionale contribuie la completarea și, acolo unde noile informații o impun, la reconsiderarea datelor cunoscute. Arhiva nu are caracter exhaustiv și rămâne deschisă unor noi identificări, completări și revizuiri."
+    ],
+    "organizationHeading": "Organizare",
+    "researchHeading": "Cercetare și coordonare",
+    "coordinatorName": "Corina (Nicola) Țugui",
+    "coordinatorRole": "cercetare, curatoriat și coordonarea proiectului",
+    "teamHeading": "Echipă organizare expoziție",
+    "team": ["Maria Ghement", "Raluca Grecea", "Răzvan Drînceanu"],
+    "collaboratorsHeading": "Colaboratori",
+    "collaborators": [
+      "Despina Bordeanu — video și montaj",
+      "Irina-Ștefania Costea-Scobiola — modelare și printare 3D",
+      "Marius Costea-Scobiola — modelare și printare 3D",
+      "Tudor Migia / Publimpres — execuția mobilierului de expunere și a reproducerilor de mobilier la scara 1:1",
+      "Remus Pencea — fotografie 360° și tur virtual"
+    ],
+    "exhibitionHeading": "Expoziția",
+    "exhibition": [
+      "Arhiva digitală însoțește expoziția „Haralamb (Bubi) Georgescu. Orizonturi moderniste între România și Statele Unite ale Americii”, prezentată la Universitatea de Arhitectură și Urbanism „Ion Mincu” din București, în octombrie 2026.",
+      "Construită în jurul relației dintre cele două contexte geografice și profesionale ale activității lui Bubi Georgescu, expoziția aduce împreună desene, fotografii, materiale documentare, interviuri și reconstituiri, prin intermediul cărora sunt urmărite continuitățile și transformările arhitecturii sale.",
+      "Mediul digital extinde cercetarea dincolo de limitele expunerii fizice, făcând accesibile proiecte, documente și informații care nu au putut fi integrate în expoziție. Opera lui Bubi Georgescu poate fi astfel urmărită într-o formă mai amplă, dincolo de selecția necesară construirii discursului curatorial.",
+      "Arhiva devine accesibilă publicului odată cu deschiderea expoziției și poate fi consultată direct online sau prin intermediul codurilor QR integrate în panourile de expunere, care stabilesc o legătură directă între materialele prezentate în spațiul expozițional și conținutul extins disponibil în mediul digital."
+    ],
+    "fundingHeading": "Finanțare și parteneri",
+    "funding": [
+      "Expoziția „Haralamb (Bubi) Georgescu. Orizonturi moderniste între România și S.U.A.”, proiect cultural înscris în categoria programelor, proiectelor și acțiunilor culturale ale filialelor OAR, este finanțată din Timbrul de arhitectură, prin Ordinul Arhitecților din România.",
+      "Parteneri: Uniunea Arhitecților din România (UAR), Universitatea de Arhitectură și Urbanism „Ion Mincu” (UAUIM), Mincu Gallery, /SAC.",
+      "Dezvoltarea Arhivei Haralamb H. (Bubi) Georgescu, ca extensie digitală a cercetării și a proiectului expozițional, beneficiază de finanțarea Uniunii Arhitecților din România (UAR)."
+    ],
+    "contactHeading": "Contact",
+    "contactName": "Arhiva Haralamb H. (Bubi) Georgescu",
+    "emailLabel": "E-mail",
+    "email": "contact@haralamb-georgescu.ro",
+    "socialLabel": "Social",
+    "instagram": "arhivaharalambgeorgescu",
+    "instagramUrl": "https://www.instagram.com/arhivaharalambgeorgescu",
+    "facebook": "arhivaharalambgeorgescu",
+    "facebookUrl": "https://www.facebook.com/share/1F2LZGSBUd/?mibextid=wwXIfr",
+    "eventLabel": "Eveniment expoziție",
+    "event": "Arh. Haralamb Georgescu – orizonturi moderniste între România și S.U.A.",
+    "eventUrl": "https://fb.me/e/4ngFnfmAM"
   }
 }

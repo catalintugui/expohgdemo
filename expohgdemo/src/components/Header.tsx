@@ -11,8 +11,8 @@ export function Header() {
       <div className="container header__inner">
         <div className="header__top">
           <NavLink to="/" className="header__title" end>
-            <h1>{t.architect.name}</h1>
             <span>{t.architect.tagline}</span>
+            <h1>{t.architect.name}</h1>
           </NavLink>
           <LanguageSelector />
         </div>

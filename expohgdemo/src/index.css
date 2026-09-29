@@ -333,8 +333,8 @@ button {
   color: var(--ink-muted);
 }
 
-.header__title span:last-child {
-  font-size: var(--size-xs);
+.header__title span {
+  font-size: calc(var(--size-xs) * 1.5);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -342,13 +342,13 @@ button {
 }
 
 @media (min-width: 30rem) {
-  .header__title span:last-child {
+  .header__title span {
     letter-spacing: 0.16em;
   }
 }
 
 @media (min-width: 48rem) {
-  .header__title span:last-child {
+  .header__title span {
     letter-spacing: 0.2em;
   }
 }
@@ -1097,6 +1097,145 @@ button {
   margin-top: var(--space-sm);
 }
 
+.statement--alt {
+  background: var(--bg);
+}
+
+.statement + .statement {
+  border-top: none;
+}
+
+/* About team */
+
+.about-team {
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid var(--line-light);
+}
+
+@media (min-width: 40rem) {
+  .about-team {
+    padding-block: var(--space-xl);
+  }
+}
+
+.about-team__grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 40rem) {
+  .about-team__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+.about-team__column {
+  display: grid;
+  gap: var(--space-md);
+  align-content: start;
+}
+
+@media (min-width: 40rem) {
+  .about-team__column {
+    gap: var(--space-lg);
+  }
+}
+
+.about-team__list {
+  margin-top: var(--space-xs);
+  display: grid;
+  gap: 0.35rem;
+  font-size: var(--size-sm);
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.about-contact__event {
+  margin-top: var(--space-lg);
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.about-contact__event a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--bg);
+  border-bottom: none;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.about-contact__event a span {
+  border-bottom: 1px solid rgba(235, 232, 225, 0.35);
+}
+
+.about-contact__event a:hover {
+  color: #b8b4ad;
+}
+
+.about-contact__event a:hover span {
+  border-bottom-color: #b8b4ad;
+}
+
+.about-contact__social {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: var(--space-xs);
+}
+
+.about-contact__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--bg);
+  width: fit-content;
+}
+
+.about-contact__social-link:hover {
+  color: #b8b4ad;
+}
+
+.about-contact__icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  display: block;
+}
+
+.visit__grid--contact {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 40rem) {
+  .visit__grid--contact {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visit__grid--contact .visit__block:last-child {
+    grid-column: auto;
+  }
+}
+
+.visit__block a {
+  color: inherit;
+  border-bottom: 1px solid rgba(235, 232, 225, 0.35);
+}
+
+.visit__block a:hover {
+  border-bottom-color: var(--bg);
+  color: var(--bg);
+}
+
+.visit__block p strong a {
+  color: var(--bg);
+}
+
+.visit__block .about-contact__social-link {
+  border-bottom: none;
+}
+
 /* Works */
 
 .works {
@@ -1730,9 +1869,7 @@ button {
 .footer__inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    'credit follow'
-    'meta meta';
+  grid-template-areas: 'credit follow';
   align-items: center;
   column-gap: var(--space-sm);
   row-gap: var(--space-xs);
@@ -1792,29 +1929,24 @@ button {
   object-position: center;
 }
 
-.footer__meta {
-  grid-area: meta;
-  justify-self: center;
-  text-align: center;
-  white-space: nowrap;
-  line-height: 1;
-}
-
 .footer__follow {
   grid-area: follow;
-  display: inline-flex;
-  align-items: center;
+  display: grid;
+  gap: 0.45rem;
   justify-self: end;
-  gap: 0.65rem;
+  justify-items: start;
   color: inherit;
-  line-height: 1;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: none;
 }
 
 .footer__social {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.55rem;
   color: inherit;
+  min-width: 0;
 }
 
 .footer__social:hover {
@@ -1826,6 +1958,12 @@ button {
   height: 0.95rem;
   flex-shrink: 0;
   display: block;
+}
+
+.footer__social span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Homepage */
