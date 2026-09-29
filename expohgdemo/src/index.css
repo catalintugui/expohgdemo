@@ -268,20 +268,32 @@ button {
 
 .header__top {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   width: 100%;
 }
 
 .header__title {
   display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 0.35em;
   min-width: 0;
   text-decoration: none;
   color: inherit;
   flex: 1 1 auto;
+}
+
+.header__title span,
+.header__title h1 {
+  white-space: nowrap;
+}
+
+.header__title h1 {
+  font-size: calc(var(--size-md) * 0.8);
+  letter-spacing: 0.04em;
 }
 
 .lang-selector {
@@ -301,10 +313,20 @@ button {
 
   .header__top {
     display: contents;
+    align-items: flex-start;
+    gap: var(--space-md);
   }
 
   .header__title {
     flex: 0 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+
+  .header__title h1 {
+    font-size: var(--size-lg);
+    letter-spacing: 0.02em;
   }
 
   .lang-selector {
@@ -334,7 +356,7 @@ button {
 }
 
 .header__title span {
-  font-size: calc(var(--size-xs) * 1.5);
+  font-size: calc(var(--size-xs) * 1.5 * 0.8);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -349,6 +371,7 @@ button {
 
 @media (min-width: 48rem) {
   .header__title span {
+    font-size: calc(var(--size-xs) * 1.5);
     letter-spacing: 0.2em;
   }
 }
@@ -384,7 +407,7 @@ button {
   justify-content: center;
   min-height: 2.25rem;
   padding: var(--space-xs) var(--space-xs);
-  font-size: var(--size-xs);
+  font-size: calc(var(--size-xs) * 0.8);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   text-align: center;
@@ -404,6 +427,7 @@ button {
     display: inline-flex;
     min-height: auto;
     padding: 0;
+    font-size: var(--size-xs);
     background: none;
     letter-spacing: 0.12em;
     white-space: nowrap;
@@ -444,7 +468,7 @@ button {
   min-height: 2.25rem;
   padding: var(--space-xs);
   font-family: var(--font);
-  font-size: var(--size-xs);
+  font-size: calc(var(--size-xs) * 0.8);
   font-weight: 400;
   line-height: 1.55;
   text-transform: uppercase;
@@ -486,6 +510,7 @@ button {
     height: auto;
     min-height: auto;
     padding: 0;
+    font-size: var(--size-xs);
     background: none;
     letter-spacing: 0.12em;
     white-space: nowrap;
