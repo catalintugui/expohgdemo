@@ -26,6 +26,7 @@ export function Footer() {
             href="https://www.instagram.com/arhivaharalambgeorgescu"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram"
           >
             <svg
               className="footer__icon"
@@ -45,6 +46,7 @@ export function Footer() {
             href="https://www.facebook.com/share/1F2LZGSBUd/?mibextid=wwXIfr"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook"
           >
             <svg
               className="footer__icon"

@@ -1909,9 +1909,9 @@ button {
   display: flex;
   align-items: center;
   align-self: center;
-  height: 2.4em;
+  height: 2.0625rem;
   min-width: 0;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   color: inherit;
 }
 
@@ -1926,15 +1926,17 @@ button {
   width: auto;
   max-width: 100%;
   object-fit: contain;
-  object-position: center;
+  object-position: left center;
 }
 
 .footer__follow {
   grid-area: follow;
-  display: grid;
-  gap: 0.45rem;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
   justify-self: end;
-  justify-items: start;
+  align-self: center;
+  gap: 0.85rem;
   color: inherit;
   line-height: 1.2;
   letter-spacing: 0.04em;
@@ -1954,16 +1956,43 @@ button {
 }
 
 .footer__icon {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 1.15rem;
+  height: 1.15rem;
   flex-shrink: 0;
   display: block;
 }
 
 .footer__social span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: none;
+}
+
+@media (min-width: 40rem) {
+  .footer__uar-link {
+    height: 1.8em;
+    flex: 0 1 auto;
+  }
+
+  .footer__uar {
+    object-position: center;
+  }
+
+  .footer__follow {
+    display: grid;
+    gap: 0.45rem;
+    justify-items: start;
+  }
+
+  .footer__icon {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+
+  .footer__social span {
+    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 /* Homepage */

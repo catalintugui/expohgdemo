@@ -74,8 +74,13 @@
     "researchHeading": "Cercetare și coordonare",
     "coordinatorName": "Corina (Nicola) Țugui",
     "coordinatorRole": "cercetare, curatoriat și coordonarea proiectului",
-    "teamHeading": "Echipă organizare expoziție",
-    "team": ["Maria Ghement", "Raluca Grecea", "Răzvan Drînceanu"],
+    "teamHeading": "Design expozițional",
+    "team": [
+      "Corina (Nicola) Țugui",
+      "Maria Ghement",
+      "Raluca Grecea",
+      "Răzvan Drînceanu"
+    ],
     "collaboratorsHeading": "Colaboratori",
     "collaborators": [
       "Despina Bordeanu — video și montaj",
