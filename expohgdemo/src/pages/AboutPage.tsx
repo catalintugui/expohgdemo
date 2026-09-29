@@ -12,7 +12,6 @@ export function AboutPage() {
         <div className="container hero__grid">
           <div>
             <BauhausAccent />
-            <h2>{page.heading}</h2>
             <div className="hero__meta">
               <span>{page.metaRole}</span>
               <span>{page.metaYears}</span>

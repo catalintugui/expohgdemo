@@ -983,18 +983,18 @@ button {
 /* Hero */
 
 .hero {
-  padding-block: var(--space-lg) var(--space-md);
+  padding-block: calc(var(--space-lg) / 2) var(--space-md);
 }
 
 @media (min-width: 40rem) {
   .hero {
-    padding-block: var(--space-xl) var(--space-lg);
+    padding-block: calc(var(--space-xl) / 2) var(--space-lg);
   }
 }
 
 @media (min-width: 64rem) {
   .hero {
-    padding-block: var(--space-2xl) var(--space-xl);
+    padding-block: calc(var(--space-2xl) / 2) var(--space-xl);
   }
 }
 
