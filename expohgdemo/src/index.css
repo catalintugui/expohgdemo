@@ -12,11 +12,11 @@
   --bauhaus-yellow: #c9a227;
 
   --font: 'Jost', system-ui, sans-serif;
-  --size-xs: 0.75rem;
-  --size-sm: 0.9rem;
-  --size-base: 0.975rem;
-  --size-md: 1.125rem;
-  --size-lg: 1.35rem;
+  --size-xs: 0.9375rem;
+  --size-sm: 1.125rem;
+  --size-base: 1.21875rem;
+  --size-md: 1.40625rem;
+  --size-lg: 1.6875rem;
 
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
@@ -29,8 +29,6 @@
   --header-height: 3.5rem;
   --wall-size: clamp(0.7rem, 1.6vw, 0.95rem);
   --wall-lh: 1.2;
-
-  /* breakpoints: sm < 40rem, md 40–64rem, lg ≥ 64rem */
 }
 
 *,
@@ -40,7 +38,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
@@ -325,7 +323,7 @@ button {
   }
 
   .header__title h1 {
-    font-size: var(--size-lg);
+    font-size: calc(var(--size-lg) * 0.75);
     letter-spacing: 0.02em;
   }
 
@@ -371,7 +369,7 @@ button {
 
 @media (min-width: 48rem) {
   .header__title span {
-    font-size: calc(var(--size-xs) * 1.5);
+    font-size: calc(var(--size-xs) * 1.5 * 0.75);
     letter-spacing: 0.2em;
   }
 }
@@ -1061,7 +1059,7 @@ button {
 }
 
 .hero__lead {
-  font-size: var(--size-base);
+  font-size: var(--size-sm);
   line-height: 1.6;
   color: var(--ink-muted);
   max-width: 32rem;
@@ -1069,7 +1067,7 @@ button {
 
 @media (min-width: 40rem) {
   .hero__lead {
-    font-size: var(--size-md);
+    font-size: var(--size-base);
   }
 }
 
