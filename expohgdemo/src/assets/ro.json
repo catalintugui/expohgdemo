@@ -21,6 +21,11 @@
     "name": "Haralamb Georgescu",
     "tagline": "arhiva"
   },
+  "footer": {
+    "creditLine1": "Arhivă digitală",
+    "creditLine2": "finanțată de",
+    "uarAlt": "Uniunea Arhitecților din România"
+  },
   "exhibition": {
     "title": "",
     "dates": "29 octombrie – 19 noiembrie 2026",

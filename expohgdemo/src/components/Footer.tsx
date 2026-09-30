@@ -1,11 +1,15 @@
+import { useTranslation } from '../i18n/I18nContext'
+
 export function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__credit">
           <div className="footer__credit-text">
-            <span>Arhivă digitală</span>
-            <span>finanțată de</span>
+            <span>{t.footer.creditLine1}</span>
+            <span>{t.footer.creditLine2}</span>
           </div>
           <a
             className="footer__uar-link"
@@ -16,7 +20,7 @@ export function Footer() {
             <img
               className="footer__uar"
               src="/uar.svg"
-              alt="Uniunea Arhitecților din România"
+              alt={t.footer.uarAlt}
             />
           </a>
         </div>

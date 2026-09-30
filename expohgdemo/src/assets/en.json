@@ -19,7 +19,12 @@
   },
   "architect": {
     "name": "Haralamb Georgescu",
-    "tagline": "arhiva"
+    "tagline": "archive"
+  },
+  "footer": {
+    "creditLine1": "Digital archive",
+    "creditLine2": "funded by",
+    "uarAlt": "Union of Architects of Romania"
   },
   "exhibition": {
     "title": "",
