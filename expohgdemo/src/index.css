@@ -403,7 +403,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.25rem;
+  min-height: 2.7rem;
   padding: var(--space-xs) var(--space-xs);
   font-size: var(--size-xs);
   text-transform: uppercase;
@@ -431,15 +431,24 @@ button {
   }
 }
 
-.nav a:hover,
 .nav a.is-active {
   color: var(--ink);
   background: var(--bg-alt);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover {
+    color: var(--ink);
+    background: var(--bg-alt);
+  }
+}
+
 @media (min-width: 48rem) {
-  .nav a:hover,
   .nav a.is-active {
+    background: none;
+  }
+
+  .nav a:hover {
     background: none;
   }
 }
@@ -450,7 +459,7 @@ button {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 2.25rem;
+  min-height: 3.7rem;
   background: var(--bg);
 }
 
@@ -462,7 +471,7 @@ button {
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
-  min-height: 2.25rem;
+  min-height: 3.7rem;
   padding: var(--space-xs);
   font-family: var(--font);
   font-size: var(--size-xs);
@@ -514,19 +523,28 @@ button {
   }
 }
 
-.nav-dropdown__trigger:hover,
 .nav-dropdown__trigger.is-active,
 .nav-dropdown.is-open .nav-dropdown__trigger {
   color: var(--ink);
   background: var(--bg-alt);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .nav-dropdown__trigger:hover {
+    color: var(--ink);
+    background: var(--bg-alt);
+  }
+}
+
 @media (min-width: 48rem) {
-  .nav-dropdown__trigger:hover,
   .nav-dropdown__trigger.is-active,
   .nav-dropdown.is-open .nav-dropdown__trigger,
   .nav-dropdown:hover .nav-dropdown__trigger,
   .nav-dropdown:focus-within .nav-dropdown__trigger {
+    background: none;
+  }
+
+  .nav-dropdown__trigger:hover {
     background: none;
   }
 }
@@ -1930,7 +1948,7 @@ button {
   display: flex;
   align-items: center;
   align-self: center;
-  height: 2.0625rem;
+  height: 2.26875rem;
   min-width: 0;
   flex: 1 1 auto;
   color: inherit;
@@ -1989,7 +2007,7 @@ button {
 
 @media (min-width: 40rem) {
   .footer__uar-link {
-    height: 1.8em;
+    height: 1.98em;
     flex: 0 1 auto;
   }
 
