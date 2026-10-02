@@ -10,6 +10,7 @@ export function Footer() {
           <div className="footer__credit-text">
             <span>{t.footer.creditLine1}</span>
             <span>{t.footer.creditLine2}</span>
+            <span>{t.footer.creditLine3}</span>
           </div>
           <a
             className="footer__uar-link"
