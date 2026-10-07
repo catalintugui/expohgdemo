@@ -12,8 +12,9 @@ Options -Indexes
   RewriteEngine On
   RewriteBase /
 
-  # Do not rewrite the custom error document
+  # Do not rewrite the custom error documents
   RewriteRule ^404\.shtml$ - [L]
+  RewriteRule ^general-error\.shtml$ - [L]
 
   # Existing files and directories as-is
   RewriteCond %{REQUEST_FILENAME} !-f
@@ -21,5 +22,9 @@ Options -Indexes
   RewriteRule ^ index.html [L]
 </IfModule>
 
-# Custom 404 (Hostico often uses ErrorDocument; this survives deploys)
+# Custom error pages (Hostico often uses ErrorDocument; this survives deploys)
 ErrorDocument 404 /404.shtml
+ErrorDocument 500 /general-error.shtml
+ErrorDocument 502 /general-error.shtml
+ErrorDocument 503 /general-error.shtml
+ErrorDocument 504 /general-error.shtml
