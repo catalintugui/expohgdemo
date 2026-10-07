@@ -65,8 +65,12 @@
   "unavailable": {
     "message": "Available from 29th october 2026"
   },
-  "error": {
+  "notFound": {
     "message": "The page you are looking for does not exist.",
+    "homeLink": "Back to homepage"
+  },
+  "error": {
+    "message": "An unexpected error occurred.",
     "homeLink": "Back to homepage"
   },
   "aboutPage": {

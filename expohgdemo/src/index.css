@@ -1046,6 +1046,52 @@ button {
   border-bottom-color: var(--ink-muted);
 }
 
+/* Unexpected error (ErrorBoundary) */
+
+.error-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: var(--space-lg);
+  text-align: center;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.error-page__message {
+  margin: 0 0 var(--space-lg);
+  font-size: var(--size-md);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+@media (min-width: 48rem) {
+  .error-page__message {
+    font-size: var(--size-lg);
+  }
+}
+
+.error-page__link {
+  display: inline-block;
+  font-size: var(--size-xs);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.2rem;
+}
+
+.error-page__link:hover {
+  color: var(--ink-muted);
+  border-bottom-color: var(--ink-muted);
+}
+
 /* Hero */
 
 .hero {

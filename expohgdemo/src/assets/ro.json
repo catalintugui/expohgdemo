@@ -65,8 +65,12 @@
   "unavailable": {
     "message": "Disponibil din 29 octombrie 2026"
   },
-  "error": {
+  "notFound": {
     "message": "Pagina pe care o căutați nu există.",
+    "homeLink": "Înapoi la pagina principală"
+  },
+  "error": {
+    "message": "A apărut o eroare neașteptată.",
     "homeLink": "Înapoi la pagina principală"
   },
   "aboutPage": {

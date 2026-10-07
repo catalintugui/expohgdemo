@@ -9,9 +9,9 @@ export function NotFoundPage() {
       <p className="not-found__code" id="not-found-heading" aria-hidden="true">
         404
       </p>
-      <p className="not-found__message">{t.error.message}</p>
+      <p className="not-found__message">{t.notFound.message}</p>
       <Link to="/" className="not-found__link">
-        {t.error.homeLink}
+        {t.notFound.homeLink}
       </Link>
     </section>
   )
