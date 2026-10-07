@@ -16,11 +16,18 @@
     <style>
       :root {
         --bg: #ebe8e1;
+        --bg-alt: #e2dfd6;
         --ink: #1a1a1a;
         --ink-muted: #5c5a55;
+        --ink-faint: #8a8780;
         --line: #1a1a1a;
+        --line-light: #c8c4bb;
         --font: 'Jost', system-ui, sans-serif;
+        --size-xs: 0.9375rem;
+        --size-md: 1.40625rem;
+        --size-lg: 1.6875rem;
         --max-width: 68rem;
+        --space-xs: 0.5rem;
         --space-sm: 0.75rem;
         --space-md: 1.25rem;
         --space-lg: 2rem;
@@ -32,13 +39,16 @@
         box-sizing: border-box;
       }
 
-      html,
-      body {
+      html {
         margin: 0;
         height: 100%;
+        font-size: 12px;
+        -webkit-font-smoothing: antialiased;
       }
 
       body {
+        margin: 0;
+        min-height: 100%;
         display: flex;
         flex-direction: column;
         font-family: var(--font);
@@ -47,12 +57,26 @@
         letter-spacing: 0.01em;
         color: var(--ink-muted);
         background: var(--bg);
-        -webkit-font-smoothing: antialiased;
       }
 
       a {
         color: inherit;
         text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0;
+        color: inherit;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
       }
 
       .container {
@@ -75,52 +99,761 @@
         }
       }
 
+      /* Header */
+
       .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
         flex-shrink: 0;
         border-bottom: 1px solid var(--line);
         background: var(--bg);
         padding-top: env(safe-area-inset-top, 0px);
+        overflow: visible;
       }
 
       .header__inner {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--space-md);
+        flex-direction: column;
+        gap: var(--space-sm);
         padding-block: var(--space-sm);
       }
 
-      @media (min-width: 48rem) {
-        .header__inner {
-          padding-block: var(--space-md);
-        }
+      .header__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-sm);
+        width: 100%;
       }
 
       .header__title {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: baseline;
+        gap: 0.35em;
         min-width: 0;
-        color: var(--ink);
+        text-decoration: none;
+        color: inherit;
+        flex: 1 1 auto;
+      }
+
+      .header__title span,
+      .header__title h1 {
+        white-space: nowrap;
       }
 
       .header__title h1 {
         margin: 0;
-        font-size: 1.125rem;
+        font-size: var(--size-md);
         font-weight: 400;
         line-height: 1.3;
         text-transform: uppercase;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.04em;
         color: var(--ink);
       }
 
-      .header__tagline {
+      .lang-selector {
+        position: relative;
         flex-shrink: 0;
-        font-size: 1.125rem;
-        font-weight: 400;
-        line-height: 1.3;
+        z-index: 20;
+      }
+
+      @media (min-width: 48rem) {
+        .header__inner {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: var(--space-md);
+          padding-block: var(--space-md);
+        }
+
+        .header__top {
+          display: contents;
+          align-items: flex-start;
+          gap: var(--space-md);
+        }
+
+        .header__title {
+          flex: 0 1 auto;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.15rem;
+        }
+
+        .header__title h1 {
+          font-size: calc(var(--size-lg) * 0.75);
+          letter-spacing: 0.02em;
+        }
+
+        .lang-selector {
+          order: 3;
+        }
+
+        .nav {
+          order: 2;
+          flex: 0 1 auto;
+          margin-left: auto;
+          margin-right: var(--space-md);
+        }
+      }
+
+      @media (min-width: 64rem) {
+        .nav {
+          margin-right: var(--space-lg);
+        }
+      }
+
+      .header__title:hover {
+        color: inherit;
+      }
+
+      .header__title:hover h1 {
+        color: var(--ink-muted);
+      }
+
+      .header__title span {
+        font-size: calc(var(--size-xs) * 1.5);
+        font-weight: 300;
         text-transform: uppercase;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.12em;
+        color: var(--ink-faint);
+      }
+
+      @media (min-width: 30rem) {
+        .header__title span {
+          letter-spacing: 0.16em;
+        }
+      }
+
+      @media (min-width: 48rem) {
+        .header__title span {
+          font-size: calc(var(--size-xs) * 1.5 * 0.75);
+          letter-spacing: 0.2em;
+        }
+      }
+
+      /* Nav */
+
+      .nav {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--line-light);
+        border: 1px solid var(--line-light);
+      }
+
+      @media (min-width: 48rem) {
+        .nav {
+          display: flex;
+          align-items: center;
+          gap: var(--space-md);
+          background: none;
+          border: none;
+        }
+      }
+
+      @media (min-width: 64rem) {
+        .nav {
+          gap: var(--space-lg);
+        }
+      }
+
+      .nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.7rem;
+        padding: var(--space-xs) var(--space-xs);
+        font-size: var(--size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-align: center;
+        color: var(--ink-muted);
+        background: var(--bg);
+        transition: color 0.15s, background 0.15s;
+      }
+
+      @media (min-width: 30rem) {
+        .nav a {
+          letter-spacing: 0.1em;
+        }
+      }
+
+      @media (min-width: 48rem) {
+        .nav a {
+          display: inline-flex;
+          min-height: auto;
+          padding: 0;
+          background: none;
+          letter-spacing: 0.12em;
+          white-space: nowrap;
+        }
+      }
+
+      .nav a.is-active {
         color: var(--ink);
+        background: var(--bg-alt);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .nav a:hover {
+          color: var(--ink);
+          background: var(--bg-alt);
+        }
+      }
+
+      @media (min-width: 48rem) {
+        .nav a.is-active {
+          background: none;
+        }
+
+        .nav a:hover {
+          background: none;
+        }
+      }
+
+      /* Work dropdown */
+
+      .nav-dropdown {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 3.7rem;
+        background: var(--bg);
+      }
+
+      .nav-dropdown__trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        flex: 1 1 auto;
+        width: 100%;
+        height: 100%;
+        min-height: 3.7rem;
+        padding: var(--space-xs);
+        font-family: var(--font);
+        font-size: var(--size-xs);
+        font-weight: 400;
+        line-height: 1.55;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-align: center;
+        color: var(--ink-muted);
+        background: var(--bg);
+        border: none;
+        appearance: none;
+        cursor: pointer;
+        transition: color 0.15s, background 0.15s;
+      }
+
+      @media (min-width: 30rem) {
+        .nav-dropdown__trigger {
+          letter-spacing: 0.1em;
+        }
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown {
+          position: relative;
+          display: inline-flex;
+          flex-direction: column;
+          align-items: flex-start;
+          height: auto;
+          min-height: 0;
+          background: none;
+          flex: 0 0 auto;
+        }
+
+        .nav-dropdown__trigger {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.35rem;
+          flex: none;
+          width: auto;
+          height: auto;
+          min-height: auto;
+          padding: 0;
+          background: none;
+          letter-spacing: 0.12em;
+          white-space: nowrap;
+          outline: none;
+        }
+      }
+
+      .nav-dropdown__trigger.is-active,
+      .nav-dropdown.is-open .nav-dropdown__trigger {
+        color: var(--ink);
+        background: var(--bg-alt);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .nav-dropdown__trigger:hover {
+          color: var(--ink);
+          background: var(--bg-alt);
+        }
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__trigger.is-active,
+        .nav-dropdown.is-open .nav-dropdown__trigger,
+        .nav-dropdown:hover .nav-dropdown__trigger,
+        .nav-dropdown:focus-within .nav-dropdown__trigger {
+          background: none;
+        }
+
+        .nav-dropdown__trigger:hover {
+          background: none;
+        }
+      }
+
+      .nav-dropdown__caret {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        flex-shrink: 0;
+        margin-left: 0.2rem;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid currentColor;
+        opacity: 0.7;
+        transition: transform 0.15s ease;
+      }
+
+      .nav-dropdown.is-open .nav-dropdown__caret {
+        transform: rotate(180deg);
+      }
+
+      .nav-dropdown__menu {
+        position: absolute;
+        top: 100%;
+        left: -1px;
+        right: -1px;
+        z-index: 20;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background: var(--bg);
+        border: 1px solid var(--line-light);
+        border-top: none;
+        box-shadow: 0 8px 20px rgba(26, 26, 26, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.15s ease, visibility 0.15s ease;
+      }
+
+      .nav-dropdown.is-open .nav-dropdown__menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .nav-dropdown__menu[hidden] {
+        display: none;
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__menu {
+          left: auto;
+          right: auto;
+          min-width: 14rem;
+          padding-top: 0.5rem;
+          background: transparent;
+          border: none;
+          box-shadow: none;
+        }
+
+        .nav-dropdown__menu::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 0.5rem;
+        }
+
+        .nav-dropdown__menu[hidden] {
+          display: block;
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        .nav-dropdown:hover .nav-dropdown__menu,
+        .nav-dropdown:focus-within .nav-dropdown__menu {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
+      }
+
+      .nav-dropdown__menu > li {
+        background: var(--bg);
+        border-bottom: 1px solid var(--line-light);
+      }
+
+      .nav-dropdown__menu > li:last-child {
+        border-bottom: none;
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__menu > li {
+          border: 1px solid var(--line-light);
+          border-bottom: none;
+        }
+
+        .nav-dropdown__menu > li:last-child {
+          border-bottom: 1px solid var(--line-light);
+          box-shadow: 0 4px 12px rgba(26, 26, 26, 0.08);
+        }
+      }
+
+      .nav-dropdown__menu a {
+        display: block;
+        padding: 0.65rem 0.75rem;
+        font-size: var(--size-xs);
+        text-transform: none;
+        letter-spacing: 0.04em;
+        text-align: left;
+        color: var(--ink-muted);
+        background: var(--bg);
+      }
+
+      .nav-dropdown__menu a:hover,
+      .nav-dropdown__menu a.is-active {
+        color: var(--ink);
+        background: var(--bg-alt);
+      }
+
+      .nav-dropdown__item--has-submenu {
+        position: relative;
+      }
+
+      .nav-dropdown__label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-sm);
+        width: 100%;
+        padding: 0.75rem 0.85rem;
+        font-family: var(--font);
+        font-size: var(--size-xs);
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        text-align: left;
+        color: var(--ink-muted);
+        background: var(--bg);
+        border: none;
+        white-space: normal;
+        line-height: 1.35;
+        cursor: pointer;
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__label {
+          padding: 0.65rem 0.75rem;
+          white-space: nowrap;
+        }
+      }
+
+      .nav-dropdown__item--has-submenu.is-open > .nav-dropdown__label {
+        color: var(--ink);
+        background: var(--bg-alt);
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__item--has-submenu:hover > .nav-dropdown__label {
+          color: var(--ink);
+          background: var(--bg-alt);
+        }
+      }
+
+      .nav-dropdown__arrow {
+        display: inline-block;
+        flex-shrink: 0;
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid currentColor;
+        opacity: 0.7;
+        transition: transform 0.15s ease;
+      }
+
+      .nav-dropdown__item--has-submenu.is-open > .nav-dropdown__label .nav-dropdown__arrow {
+        transform: rotate(180deg);
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__arrow {
+          border-top: 3px solid transparent;
+          border-bottom: 3px solid transparent;
+          border-left: 4px solid currentColor;
+          border-right: none;
+          transform: none;
+        }
+
+        .nav-dropdown__item--has-submenu.is-open > .nav-dropdown__label .nav-dropdown__arrow {
+          transform: none;
+        }
+      }
+
+      .nav-dropdown__submenu {
+        position: static;
+        z-index: 30;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background: var(--bg-alt);
+        border-top: 1px solid var(--line-light);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.15s ease, visibility 0.15s ease, max-height 0.2s ease;
+      }
+
+      .nav-dropdown__item--has-submenu.is-open > .nav-dropdown__submenu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        max-height: 20rem;
+      }
+
+      .nav-dropdown__submenu[hidden] {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__submenu {
+          position: absolute;
+          top: 0;
+          left: 100%;
+          min-width: 14rem;
+          padding: 0 0 0 0.25rem;
+          background: transparent;
+          border-top: none;
+          max-height: none;
+          overflow: visible;
+        }
+
+        .nav-dropdown__submenu::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0.25rem;
+          height: 100%;
+        }
+
+        .nav-dropdown__item--has-submenu.is-open > .nav-dropdown__submenu {
+          max-height: none;
+        }
+
+        .nav-dropdown__submenu[hidden] {
+          max-height: none;
+          overflow: visible;
+        }
+
+        .nav-dropdown__item--has-submenu:hover > .nav-dropdown__submenu {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          max-height: none;
+        }
+      }
+
+      .nav-dropdown__submenu > li {
+        background: transparent;
+        border-bottom: 1px solid var(--line-light);
+      }
+
+      .nav-dropdown__submenu > li:last-child {
+        border-bottom: none;
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__submenu > li {
+          background: var(--bg);
+          border: 1px solid var(--line-light);
+          border-bottom: none;
+        }
+
+        .nav-dropdown__submenu > li:last-child {
+          border-bottom: 1px solid var(--line-light);
+          box-shadow: 0 4px 12px rgba(26, 26, 26, 0.08);
+        }
+      }
+
+      .nav-dropdown__submenu a {
+        display: block;
+        padding: 0.7rem 0.85rem 0.7rem 1.35rem;
+        font-size: var(--size-xs);
+        text-transform: none;
+        letter-spacing: 0.04em;
+        text-align: left;
+        color: var(--ink-muted);
+        background: transparent;
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__submenu a {
+          padding: 0.65rem 0.75rem;
+          background: var(--bg);
+          white-space: nowrap;
+        }
+      }
+
+      .nav-dropdown__submenu a:hover,
+      .nav-dropdown__submenu a.is-active {
+        color: var(--ink);
+        background: var(--bg);
+      }
+
+      @media (min-width: 48rem) {
+        .nav-dropdown__submenu a:hover,
+        .nav-dropdown__submenu a.is-active {
+          background: var(--bg-alt);
+        }
+      }
+
+      /* Language selector */
+
+      .lang-dropdown {
+        position: relative;
+      }
+
+      .lang-dropdown__trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font);
+        font-size: var(--size-xs);
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-muted);
+        background: var(--bg);
+        border: 1px solid var(--line-light);
+        padding: 0.4rem 0.55rem;
+        line-height: 1;
         white-space: nowrap;
       }
+
+      .lang-dropdown__trigger:hover {
+        color: var(--ink);
+        border-color: var(--line);
+      }
+
+      .lang-dropdown__trigger:focus-visible {
+        outline: 1px solid var(--ink);
+        outline-offset: 2px;
+      }
+
+      .lang-dropdown__caret {
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid var(--ink-faint);
+      }
+
+      .lang-dropdown__menu {
+        position: absolute;
+        top: calc(100% + 4px);
+        right: 0;
+        min-width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background: var(--bg);
+        border: 1px solid var(--line-light);
+        box-shadow: 0 4px 12px rgba(26, 26, 26, 0.08);
+      }
+
+      .lang-dropdown__menu[hidden] {
+        display: none;
+      }
+
+      .lang-dropdown__menu button {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: var(--size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-align: left;
+        color: var(--ink-muted);
+        background: var(--bg);
+      }
+
+      .lang-dropdown__menu button:hover,
+      .lang-dropdown__menu button.is-active {
+        color: var(--ink);
+        background: var(--bg-alt);
+      }
+
+      .lang-switch {
+        display: none;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: var(--line-light);
+        border: 1px solid var(--line-light);
+      }
+
+      @media (min-width: 48rem) {
+        .lang-dropdown {
+          display: none;
+        }
+
+        .lang-switch {
+          display: grid;
+        }
+      }
+
+      .lang-switch button {
+        min-height: 2.25rem;
+        min-width: 2.5rem;
+        padding: var(--space-xs);
+        font-size: var(--size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-muted);
+        background: var(--bg);
+        transition: color 0.15s, background 0.15s;
+      }
+
+      .lang-switch button:hover {
+        color: var(--ink);
+        background: var(--bg-alt);
+      }
+
+      .lang-switch button.is-active {
+        color: var(--ink);
+        background: var(--bg-alt);
+      }
+
+      @media (min-width: 48rem) {
+        .lang-switch button {
+          min-height: auto;
+          padding: 0.15rem 0.4rem;
+        }
+      }
+
+      /* Main / 404 */
 
       .main {
         flex: 1;
@@ -169,6 +902,8 @@
         border-bottom-color: var(--ink-muted);
       }
 
+      /* Footer */
+
       .footer {
         flex-shrink: 0;
         border-top: 1px solid var(--line);
@@ -178,11 +913,14 @@
       }
 
       .footer__inner {
-        display: flex;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas: 'credit follow';
         align-items: center;
-        justify-content: space-between;
-        gap: var(--space-sm);
-        font-size: 0.625rem;
+        column-gap: var(--space-sm);
+        row-gap: var(--space-xs);
+        font-size: var(--size-xs);
+        line-height: 1.2;
         letter-spacing: 0.08em;
         color: var(--ink);
       }
@@ -193,32 +931,521 @@
           padding-bottom: max(var(--space-md), env(safe-area-inset-bottom, 0px));
         }
       }
+
+      .footer__credit {
+        grid-area: credit;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: var(--space-xs);
+        min-width: 0;
+        width: 100%;
+      }
+
+      .footer__credit-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .footer__uar-link {
+        display: flex;
+        align-items: center;
+        align-self: center;
+        height: 2.26875rem;
+        min-width: 0;
+        flex: 1 1 auto;
+        color: inherit;
+      }
+
+      .footer__uar-link:hover {
+        opacity: 0.75;
+      }
+
+      .footer__uar {
+        display: block;
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: left center;
+      }
+
+      .footer__follow {
+        grid-area: follow;
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        justify-self: end;
+        align-self: center;
+        gap: 0.85rem;
+        color: inherit;
+        line-height: 1.2;
+        letter-spacing: 0.04em;
+      }
+
+      .footer__social {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: inherit;
+        min-width: 0;
+      }
+
+      .footer__social:hover {
+        color: var(--ink-muted);
+      }
+
+      .footer__icon {
+        width: 1.15rem;
+        height: 1.15rem;
+        flex-shrink: 0;
+        display: block;
+      }
+
+      .footer__social span {
+        display: none;
+      }
+
+      @media (min-width: 40rem) {
+        .footer__uar-link {
+          height: 1.98em;
+          flex: 0 1 auto;
+        }
+
+        .footer__uar {
+          object-position: center;
+        }
+
+        .footer__follow {
+          display: grid;
+          gap: 0.45rem;
+          justify-items: start;
+        }
+
+        .footer__icon {
+          width: 0.95rem;
+          height: 0.95rem;
+        }
+
+        .footer__social span {
+          display: inline;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
     </style>
   </head>
   <body>
     <header class="header">
       <div class="container header__inner">
-        <a href="https://haralamb-georgescu.ro/" class="header__title">
-          <h1>Arhiva Digitală</h1>
-        </a>
-        <span class="header__tagline">Haralamb Georgescu</span>
+        <div class="header__top">
+          <a href="/" class="header__title">
+            <span data-i18n="architect.tagline">arhiva</span>
+            <h1 data-i18n="architect.name">Haralamb Georgescu</h1>
+          </a>
+
+          <div class="lang-selector" id="lang-selector">
+            <div class="lang-dropdown">
+              <button
+                type="button"
+                class="lang-dropdown__trigger"
+                id="lang-dropdown-trigger"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-controls="lang-dropdown-menu"
+                data-i18n-aria="nav.languageAria"
+              >
+                <span id="lang-dropdown-label">RO</span>
+                <span class="lang-dropdown__caret" aria-hidden="true"></span>
+              </button>
+              <ul id="lang-dropdown-menu" class="lang-dropdown__menu" role="listbox" hidden>
+                <li role="presentation">
+                  <button type="button" role="option" data-lang="ro">RO</button>
+                </li>
+                <li role="presentation">
+                  <button type="button" role="option" data-lang="en">EN</button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="lang-switch" role="group" data-i18n-aria="nav.languageAria">
+              <button type="button" data-lang="ro" aria-pressed="true">RO</button>
+              <button type="button" data-lang="en" aria-pressed="false">EN</button>
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Principal" data-i18n-aria="nav.mainAria">
+          <a href="/" data-i18n="nav.homepage">Acasă</a>
+          <a href="/exhibition" data-i18n="nav.exhibition">Expoziție</a>
+
+          <div class="nav-dropdown" id="work-dropdown">
+            <button
+              type="button"
+              class="nav-dropdown__trigger"
+              id="work-dropdown-trigger"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="work-dropdown-menu"
+            >
+              <span data-i18n="nav.work">Lucrări</span>
+              <span class="nav-dropdown__caret" aria-hidden="true"></span>
+            </button>
+
+            <ul id="work-dropdown-menu" class="nav-dropdown__menu" role="menu" hidden>
+              <li class="nav-dropdown__item nav-dropdown__item--has-submenu" role="none">
+                <button
+                  type="button"
+                  class="nav-dropdown__label"
+                  role="menuitem"
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                  aria-controls="work-submenu-romania"
+                >
+                  <span data-i18n="nav.workRomania">1933 - 1947 | România</span>
+                  <span class="nav-dropdown__arrow" aria-hidden="true"></span>
+                </button>
+                <ul id="work-submenu-romania" class="nav-dropdown__submenu" role="menu" hidden>
+                  <li role="none">
+                    <a href="/work/romania/housing" role="menuitem" data-i18n="workCategories.housing">Locuire</a>
+                  </li>
+                  <li role="none">
+                    <a href="/work/romania/public-buildings" role="menuitem" data-i18n="workCategories.publicBuildings">Edificii Publice</a>
+                  </li>
+                  <li role="none">
+                    <a href="/work/romania/exhibition-competitions" role="menuitem" data-i18n="workCategories.exhibitionCompetitions">Expoziții și Concursuri</a>
+                  </li>
+                  <li role="none">
+                    <a href="/work/romania/design" role="menuitem" data-i18n="workCategories.design">Amenajări</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-dropdown__item nav-dropdown__item--has-submenu" role="none">
+                <button
+                  type="button"
+                  class="nav-dropdown__label"
+                  role="menuitem"
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                  aria-controls="work-submenu-usa"
+                >
+                  <span data-i18n="nav.workSua">1947 - 1977 | SUA</span>
+                  <span class="nav-dropdown__arrow" aria-hidden="true"></span>
+                </button>
+                <ul id="work-submenu-usa" class="nav-dropdown__submenu" role="menu" hidden>
+                  <li role="none">
+                    <a href="/work/usa/housing" role="menuitem" data-i18n="workCategories.housing">Locuire</a>
+                  </li>
+                  <li role="none">
+                    <a href="/work/usa/public-buildings" role="menuitem" data-i18n="workCategories.publicBuildings">Edificii Publice</a>
+                  </li>
+                  <li role="none">
+                    <a href="/work/usa/exhibition-competitions" role="menuitem" data-i18n="workCategories.exhibitionCompetitions">Expoziții și Concursuri</a>
+                  </li>
+                  <li role="none">
+                    <a href="/work/usa/design" role="menuitem" data-i18n="workCategories.design">Amenajări</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <a href="/about" data-i18n="nav.about">Despre noi</a>
+        </nav>
       </div>
     </header>
 
     <main class="main">
       <div class="container error">
         <p class="error__code">404</p>
-        <a class="error__link" href="https://haralamb-georgescu.ro/">
-          Go to homepage
-        </a>
+        <p class="error__text" data-i18n="error.message">Pagina pe care o căutați nu există.</p>
+        <a class="error__link" href="/" data-i18n="error.homeLink">Înapoi la pagina principală</a>
       </div>
     </main>
 
     <footer class="footer">
       <div class="container footer__inner">
-        <span>Haralamb Georgescu</span>
-        <span>Bucureşti // România</span>
+        <div class="footer__credit">
+          <div class="footer__credit-text">
+            <span data-i18n="footer.creditLine1">Arhivă Digitală - Proiect susținut financiar</span>
+            <span data-i18n="footer.creditLine2">de Uniunea Arhitecților din România</span>
+            <span data-i18n="footer.creditLine3">din Fondul Timbrului Arhitecturii</span>
+          </div>
+          <a
+            class="footer__uar-link"
+            href="https://www.uniuneaarhitectilor.ro/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              class="footer__uar"
+              src="/uar.svg"
+              alt="Uniunea Arhitecților din România"
+              data-i18n-alt="footer.uarAlt"
+            />
+          </a>
+        </div>
+        <div class="footer__follow">
+          <a
+            class="footer__social"
+            href="https://www.instagram.com/arhivaharalambgeorgescu"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <svg class="footer__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              />
+            </svg>
+            <span>arhivaharalambgeorgescu</span>
+          </a>
+          <a
+            class="footer__social"
+            href="https://www.facebook.com/share/1F2LZGSBUd/?mibextid=wwXIfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <svg class="footer__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"
+              />
+            </svg>
+            <span>arhivaharalambgeorgescu</span>
+          </a>
+        </div>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        var LOCALE_KEY = 'expo-hg-locale';
+        var DESKTOP_MQ = window.matchMedia('(min-width: 48rem)');
+
+        var translations = {
+          ro: {
+            nav: {
+              homepage: 'Acasă',
+              exhibition: 'Expoziție',
+              work: 'Lucrări',
+              workRomania: '1933 - 1947 | România',
+              workSua: '1947 - 1977 | SUA',
+              about: 'Despre noi',
+              mainAria: 'Principal',
+              languageAria: 'Limbă',
+            },
+            architect: {
+              name: 'Haralamb Georgescu',
+              tagline: 'arhiva',
+            },
+            workCategories: {
+              housing: 'Locuire',
+              publicBuildings: 'Edificii Publice',
+              exhibitionCompetitions: 'Expoziții și Concursuri',
+              design: 'Amenajări',
+            },
+            footer: {
+              creditLine1: 'Arhivă Digitală - Proiect susținut financiar',
+              creditLine2: 'de Uniunea Arhitecților din România',
+              creditLine3: 'din Fondul Timbrului Arhitecturii',
+              uarAlt: 'Uniunea Arhitecților din România',
+            },
+            error: {
+              message: 'Pagina pe care o căutați nu există.',
+              homeLink: 'Înapoi la pagina principală',
+            },
+          },
+          en: {
+            nav: {
+              homepage: 'Homepage',
+              exhibition: 'Exhibition',
+              work: 'Work',
+              workRomania: '1933 - 1947 | ROMANIA',
+              workSua: '1947 - 1977 | USA',
+              about: 'About us',
+              mainAria: 'Main',
+              languageAria: 'Language',
+            },
+            architect: {
+              name: 'Haralamb Georgescu',
+              tagline: 'archive',
+            },
+            workCategories: {
+              housing: 'Housing',
+              publicBuildings: 'Public Buildings',
+              exhibitionCompetitions: 'Exhibition and Competitions',
+              design: 'Design',
+            },
+            footer: {
+              creditLine1: 'Digital Archive - Project financially supported',
+              creditLine2: 'by Uniunea Arhitecților din România',
+              creditLine3: 'from Fondul Timbrului Arhitecturii',
+              uarAlt: 'Uniunea Arhitecților din România',
+            },
+            error: {
+              message: 'The page you are looking for does not exist.',
+              homeLink: 'Back to homepage',
+            },
+          },
+        };
+
+        function getNested(obj, path) {
+          return path.split('.').reduce(function (acc, key) {
+            return acc && acc[key];
+          }, obj);
+        }
+
+        function readLocale() {
+          var stored = localStorage.getItem(LOCALE_KEY);
+          return stored === 'en' || stored === 'ro' ? stored : 'ro';
+        }
+
+        function applyLocale(locale) {
+          var t = translations[locale];
+          document.documentElement.lang = locale;
+
+          document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var value = getNested(t, el.getAttribute('data-i18n'));
+            if (value) el.textContent = value;
+          });
+
+          document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+            var value = getNested(t, el.getAttribute('data-i18n-aria'));
+            if (value) el.setAttribute('aria-label', value);
+          });
+
+          document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+            var value = getNested(t, el.getAttribute('data-i18n-alt'));
+            if (value) el.setAttribute('alt', value);
+          });
+
+          var label = document.getElementById('lang-dropdown-label');
+          if (label) label.textContent = locale.toUpperCase();
+
+          document.querySelectorAll('[data-lang]').forEach(function (btn) {
+            var active = btn.getAttribute('data-lang') === locale;
+            btn.classList.toggle('is-active', active);
+            btn.setAttribute('aria-selected', active ? 'true' : 'false');
+            btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+        }
+
+        function setLocale(locale) {
+          localStorage.setItem(LOCALE_KEY, locale);
+          applyLocale(locale);
+        }
+
+        function closeWorkDropdown() {
+          var root = document.getElementById('work-dropdown');
+          var menu = document.getElementById('work-dropdown-menu');
+          var trigger = document.getElementById('work-dropdown-trigger');
+          if (!root || !menu || !trigger) return;
+          root.classList.remove('is-open');
+          menu.hidden = true;
+          trigger.setAttribute('aria-expanded', 'false');
+          root.querySelectorAll('.nav-dropdown__item--has-submenu').forEach(function (item) {
+            item.classList.remove('is-open');
+            var submenu = item.querySelector('.nav-dropdown__submenu');
+            var label = item.querySelector('.nav-dropdown__label');
+            if (submenu) submenu.hidden = true;
+            if (label) label.setAttribute('aria-expanded', 'false');
+          });
+        }
+
+        function initWorkDropdown() {
+          var root = document.getElementById('work-dropdown');
+          var menu = document.getElementById('work-dropdown-menu');
+          var trigger = document.getElementById('work-dropdown-trigger');
+          if (!root || !menu || !trigger) return;
+
+          trigger.addEventListener('click', function () {
+            if (DESKTOP_MQ.matches) return;
+            var open = root.classList.toggle('is-open');
+            menu.hidden = !open;
+            trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (!open) {
+              root.querySelectorAll('.nav-dropdown__item--has-submenu').forEach(function (item) {
+                item.classList.remove('is-open');
+                var submenu = item.querySelector('.nav-dropdown__submenu');
+                var label = item.querySelector('.nav-dropdown__label');
+                if (submenu) submenu.hidden = true;
+                if (label) label.setAttribute('aria-expanded', 'false');
+              });
+            }
+          });
+
+          root.querySelectorAll('.nav-dropdown__item--has-submenu').forEach(function (item) {
+            var label = item.querySelector('.nav-dropdown__label');
+            var submenu = item.querySelector('.nav-dropdown__submenu');
+            if (!label || !submenu) return;
+
+            label.addEventListener('click', function () {
+              if (DESKTOP_MQ.matches) return;
+              var open = item.classList.toggle('is-open');
+              submenu.hidden = !open;
+              label.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+          });
+
+          root.querySelectorAll('a[href]').forEach(function (link) {
+            link.addEventListener('click', closeWorkDropdown);
+          });
+        }
+
+        function initLangSelector() {
+          var root = document.getElementById('lang-selector');
+          var trigger = document.getElementById('lang-dropdown-trigger');
+          var menu = document.getElementById('lang-dropdown-menu');
+          if (!root) return;
+
+          function closeLangMenu() {
+            if (!menu || !trigger) return;
+            menu.hidden = true;
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+
+          if (trigger && menu) {
+            trigger.addEventListener('click', function () {
+              var open = menu.hidden;
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+          }
+
+          root.querySelectorAll('[data-lang]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              setLocale(btn.getAttribute('data-lang'));
+              closeLangMenu();
+            });
+          });
+
+          document.addEventListener('pointerdown', function (event) {
+            if (!root.contains(event.target)) closeLangMenu();
+            if (!document.getElementById('work-dropdown')?.contains(event.target)) {
+              if (!DESKTOP_MQ.matches) closeWorkDropdown();
+            }
+          });
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+              closeLangMenu();
+              closeWorkDropdown();
+            }
+          });
+        }
+
+        applyLocale(readLocale());
+        initWorkDropdown();
+        initLangSelector();
+      })();
+    </script>
   </body>
 </html>

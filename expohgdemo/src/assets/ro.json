@@ -65,6 +65,10 @@
   "unavailable": {
     "message": "Disponibil din 29 octombrie 2026"
   },
+  "error": {
+    "message": "Pagina pe care o căutați nu există.",
+    "homeLink": "Înapoi la pagina principală"
+  },
   "aboutPage": {
     "heading": "Despre",
     "metaRole": "Arhivă digitală",

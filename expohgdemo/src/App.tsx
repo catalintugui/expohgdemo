@@ -3,6 +3,7 @@ import { Layout } from './components/Layout'
 import { AboutPage } from './pages/AboutPage'
 import { ExhibitionPage } from './pages/ExhibitionPage'
 import { HomePage } from './pages/HomePage'
+import { NotFoundPage } from './pages/NotFoundPage'
 import { UnavailablePage } from './pages/UnavailablePage'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         />
         <Route path="work/usa" element={<Navigate to="/work/usa/housing" replace />} />
         <Route path="work" element={<Navigate to="/work/romania/housing" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   )
