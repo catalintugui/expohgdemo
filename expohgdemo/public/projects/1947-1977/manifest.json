@@ -1,0 +1,198 @@
+{
+  "converted": 582,
+  "errors": [],
+  "projects": [
+    {
+      "slug": "p-h-residence",
+      "section": "single-family",
+      "hero": "/projects/1947-1977/p-h-residence-hero.jpg",
+      "images": 33
+    },
+    {
+      "slug": "residence-h-pelengian",
+      "section": "single-family",
+      "hero": "/projects/1947-1977/residence-h-pelengian-hero.jpg",
+      "images": 14
+    },
+    {
+      "slug": "guy-pauker-residence",
+      "section": "single-family",
+      "hero": "/projects/1947-1977/guy-pauker-residence-hero.jpg",
+      "images": 31
+    },
+    {
+      "slug": "m-g-residence",
+      "section": "single-family",
+      "hero": "",
+      "images": 31
+    },
+    {
+      "slug": "residence-marchante-esq",
+      "section": "single-family",
+      "hero": "/projects/1947-1977/residence-marchante-esq-hero.jpg",
+      "images": 17
+    },
+    {
+      "slug": "pasinetti-house",
+      "section": "single-family",
+      "hero": "/projects/1947-1977/pasinetti-house-hero.jpg",
+      "images": 23
+    },
+    {
+      "slug": "neidentificate",
+      "section": "single-family",
+      "hero": "",
+      "images": 7
+    },
+    {
+      "slug": "hg-residence",
+      "section": "single-family",
+      "hero": "/projects/1947-1977/hg-residence-hero.jpg",
+      "images": 16
+    },
+    {
+      "slug": "beach-house",
+      "section": "single-family",
+      "hero": "/projects/1947-1977/beach-house-hero.jpg",
+      "images": 16
+    },
+    {
+      "slug": "24-unit-apartment-house",
+      "section": "semi-collective",
+      "hero": "/projects/1947-1977/24-unit-apartment-house-hero.jpg",
+      "images": 5
+    },
+    {
+      "slug": "apartment-complex",
+      "section": "semi-collective",
+      "hero": "/projects/1947-1977/apartment-complex-hero.jpg",
+      "images": 7
+    },
+    {
+      "slug": "carmelina-homes",
+      "section": "semi-collective",
+      "hero": "/projects/1947-1977/carmelina-homes-hero.jpg",
+      "images": 15
+    },
+    {
+      "slug": "hacienda-apartments",
+      "section": "semi-collective",
+      "hero": "/projects/1947-1977/hacienda-apartments-hero.jpg",
+      "images": 5
+    },
+    {
+      "slug": "lark-apartments",
+      "section": "semi-collective",
+      "hero": "/projects/1947-1977/lark-apartments-hero.jpg",
+      "images": 4
+    },
+    {
+      "slug": "six-unit-apartments",
+      "section": "semi-collective",
+      "hero": "/projects/1947-1977/six-unit-apartments-hero.jpg",
+      "images": 13
+    },
+    {
+      "slug": "30-units-for-nabel",
+      "section": "semi-collective",
+      "hero": "/projects/1947-1977/30-units-for-nabel-hero.jpg",
+      "images": 9
+    },
+    {
+      "slug": "neidentif",
+      "section": "semi-collective",
+      "hero": "",
+      "images": 4
+    },
+    {
+      "slug": "30-units-app-calif",
+      "section": "collective",
+      "hero": "/projects/1947-1977/30-units-app-calif-hero.jpg",
+      "images": 28
+    },
+    {
+      "slug": "24-unit-apartment-house-collective",
+      "section": "collective",
+      "hero": "",
+      "images": 9
+    },
+    {
+      "slug": "60-units-apartment-house",
+      "section": "collective",
+      "hero": "/projects/1947-1977/60-units-apartment-house-hero.jpg",
+      "images": 53
+    },
+    {
+      "slug": "langdon-apartments",
+      "section": "collective",
+      "hero": "",
+      "images": 9
+    },
+    {
+      "slug": "six-units-apartment",
+      "section": "collective",
+      "hero": "/projects/1947-1977/six-units-apartment-hero.jpg",
+      "images": 14
+    },
+    {
+      "slug": "high-rise",
+      "section": "collective",
+      "hero": "",
+      "images": 137
+    },
+    {
+      "slug": "castellammare-apartments",
+      "section": "collective",
+      "hero": "/projects/1947-1977/castellammare-apartments-hero.jpg",
+      "images": 7
+    },
+    {
+      "slug": "fullerton-apartments",
+      "section": "collective",
+      "hero": "/projects/1947-1977/fullerton-apartments-hero.jpg",
+      "images": 6
+    },
+    {
+      "slug": "joe-nabel",
+      "section": "collective",
+      "hero": "/projects/1947-1977/joe-nabel-hero.jpg",
+      "images": 4
+    },
+    {
+      "slug": "kleber-apartments",
+      "section": "collective",
+      "hero": "/projects/1947-1977/kleber-apartments-hero.jpg",
+      "images": 9
+    },
+    {
+      "slug": "locuinte-colective-insiruite-nabel",
+      "section": "collective",
+      "hero": "/projects/1947-1977/locuinte-colective-insiruite-nabel-hero.jpg",
+      "images": 5
+    },
+    {
+      "slug": "roscoe-apartments",
+      "section": "collective",
+      "hero": "/projects/1947-1977/roscoe-apartments-hero.jpg",
+      "images": 3
+    },
+    {
+      "slug": "imobil-apartamente-tip-duplex",
+      "section": "collective",
+      "hero": "/projects/1947-1977/imobil-apartamente-tip-duplex-hero.jpg",
+      "images": 5
+    },
+    {
+      "slug": "levering-properties",
+      "section": "collective",
+      "hero": "/projects/1947-1977/levering-properties-hero.jpg",
+      "images": 15
+    },
+    {
+      "slug": "neidentificat",
+      "section": "collective",
+      "hero": "/projects/1947-1977/neidentificat-hero.jpg",
+      "images": 2
+    }
+  ]
+}

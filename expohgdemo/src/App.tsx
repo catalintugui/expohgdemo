@@ -3,8 +3,10 @@ import { Layout } from './components/Layout'
 import { AboutPage } from './pages/AboutPage'
 import { ExhibitionPage } from './pages/ExhibitionPage'
 import { HomePage } from './pages/HomePage'
+import { LegacyProjectRedirect } from './pages/LegacyProjectRedirect'
 import { NotFoundPage } from './pages/NotFoundPage'
-import { UnavailablePage } from './pages/UnavailablePage'
+import { ProjectPage } from './pages/ProjectPage'
+import { WorkPage } from './pages/WorkPage'
 
 function App() {
   return (
@@ -13,13 +15,16 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="exhibition" element={<ExhibitionPage />} />
         <Route path="about" element={<AboutPage />} />
-        <Route path="work/romania/:category" element={<UnavailablePage />} />
-        <Route path="work/usa/:category" element={<UnavailablePage />} />
+        <Route path="work/romania/:category/:slug" element={<ProjectPage />} />
+        <Route path="work/usa/:category/:slug" element={<ProjectPage />} />
+        <Route path="work/romania/:category" element={<WorkPage period="a" />} />
+        <Route path="work/usa/:category" element={<WorkPage period="b" />} />
         <Route
           path="work/romania"
           element={<Navigate to="/work/romania/housing" replace />}
         />
         <Route path="work/usa" element={<Navigate to="/work/usa/housing" replace />} />
+        <Route path="work/:slug" element={<LegacyProjectRedirect />} />
         <Route path="work" element={<Navigate to="/work/romania/housing" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
