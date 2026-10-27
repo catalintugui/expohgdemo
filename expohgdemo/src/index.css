@@ -564,7 +564,7 @@ button {
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--ink-faint);
+  color: var(--ink-muted);
 }
 
 @media (min-width: 30rem) {
