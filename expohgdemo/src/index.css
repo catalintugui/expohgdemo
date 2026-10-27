@@ -1935,6 +1935,110 @@ button {
   border-bottom-color: var(--ink);
 }
 
+/* Fit exhibition + project detail between nav/footer on large screens */
+@media (min-width: 64rem) and (min-height: 760px) {
+  .main:has(.page-fit) {
+    padding-block: 0;
+  }
+
+  .main:has(.page-fit--exhibition) {
+    overflow: hidden;
+  }
+
+  .page-fit {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-fit--exhibition > .hero {
+    padding-block: var(--space-sm) var(--space-md);
+    flex-shrink: 0;
+  }
+
+  .page-fit--exhibition > .hero .hero__accent {
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-fit--exhibition > .hero .hero__meta {
+    margin-top: var(--space-sm);
+  }
+
+  .page-fit--exhibition > .statement {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-block: var(--space-md);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-fit--exhibition > .statement .statement__inner {
+    flex: 1;
+    min-height: 0;
+    gap: var(--space-md);
+  }
+
+  .page-fit--exhibition > .statement .statement__text {
+    gap: var(--space-sm);
+  }
+
+  .page-fit--exhibition > .statement .statement__text p + p {
+    margin-top: var(--space-xs);
+  }
+
+  .page-fit--exhibition > .visit {
+    flex-shrink: 0;
+    padding-block: var(--space-md);
+  }
+
+  .page-fit--exhibition > .visit .visit__grid {
+    margin-top: var(--space-sm);
+    gap: var(--space-md);
+  }
+
+  .page-fit--exhibition > .visit .about-contact__event {
+    margin-top: var(--space-md);
+  }
+
+  .page-fit--project {
+    justify-content: center;
+  }
+
+  .page-fit--project > .project-hero {
+    flex-shrink: 0;
+    padding-block: var(--space-xs) var(--space-sm);
+  }
+
+  .page-fit--project .project-hero__grid {
+    gap: var(--space-md);
+  }
+
+  .page-fit--project .project-hero__content {
+    gap: var(--space-xs);
+  }
+
+  .page-fit--project .project-hero__body {
+    font-size: var(--size-sm);
+    line-height: 1.45;
+  }
+
+  .page-fit--project > .project-gallery {
+    flex-shrink: 0;
+    padding-block: var(--space-xs) var(--space-sm);
+  }
+
+  .page-fit--project .project-slider {
+    gap: var(--space-xs);
+  }
+
+  .page-fit--project > .project-back {
+    flex-shrink: 0;
+    padding-top: var(--space-xs);
+    padding-bottom: var(--space-sm);
+  }
+}
+
 /* Teaser */
 
 .teaser {

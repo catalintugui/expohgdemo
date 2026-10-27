@@ -7,7 +7,7 @@ export function ExhibitionPage() {
   const { exhibition: expo, exhibitionPage: page } = t
 
   return (
-    <>
+    <div className="page-fit page-fit--exhibition">
       <section className="hero page-section">
         <div className="container hero__grid">
           <div>
@@ -66,6 +66,6 @@ export function ExhibitionPage() {
           <ExhibitionEventLink />
         </div>
       </section>
-    </>
+    </div>
   )
 }

@@ -70,7 +70,7 @@ export function ProjectPage() {
   })
 
   return (
-    <>
+    <div className="page-fit page-fit--project">
       <section className="project-hero page-section">
         <div className="container project-hero__grid">
           <div
@@ -171,6 +171,6 @@ export function ProjectPage() {
             document.body,
           )
         : null}
-    </>
+    </div>
   )
 }
