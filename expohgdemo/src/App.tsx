@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage'
 import { LegacyProjectRedirect } from './pages/LegacyProjectRedirect'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { ProjectPage } from './pages/ProjectPage'
+import { SearchPage } from './pages/SearchPage'
 import { WorkPage } from './pages/WorkPage'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="exhibition" element={<ExhibitionPage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="search" element={<SearchPage />} />
         <Route path="work/romania/:category/:slug" element={<ProjectPage />} />
         <Route path="work/usa/:category/:slug" element={<ProjectPage />} />
         <Route path="work/romania/:category" element={<WorkPage period="a" />} />

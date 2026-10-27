@@ -11,7 +11,9 @@
     "workSua": "1947 - 1977 | USA",
     "about": "About us",
     "mainAria": "Main",
-    "languageAria": "Language"
+    "languageAria": "Language",
+    "searchAria": "Search",
+    "searchPlaceholder": "Search"
   },
   "lang": {
     "en": "EN",
@@ -134,6 +136,15 @@
     "copyright": "© 2026",
     "footerMeta": "{year} // Bucharest // Romania",
     "footerFollow": "Haralamb Georgescu Archive"
+  },
+  "searchPage": {
+    "heading": "Search",
+    "resultsFor": "Results for",
+    "resultsCount": "{count} projects",
+    "resultCount": "{count} project",
+    "emptyQuery": "Enter a search term to find projects.",
+    "noResults": "No projects matched your search.",
+    "suggestionsAria": "Project suggestions"
   },
   "workPage": {
     "heading": "Work",

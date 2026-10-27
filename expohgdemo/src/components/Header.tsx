@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from '../i18n/I18nContext'
 import { LanguageSelector } from './LanguageSelector'
+import { SearchExpand } from './SearchExpand'
 import { WorkNavDropdown } from './WorkNavDropdown'
 
 export function Header() {
@@ -10,10 +11,13 @@ export function Header() {
     <header className="header">
       <div className="container header__inner">
         <div className="header__top">
-          <NavLink to="/" className="header__title" end>
-            <span>{t.architect.tagline}</span>
-            <h1>{t.architect.name}</h1>
-          </NavLink>
+          <div className="header__search-slot">
+            <NavLink to="/" className="header__title" end>
+              <span>{t.architect.tagline}</span>
+              <h1>{t.architect.name}</h1>
+            </NavLink>
+            <SearchExpand />
+          </div>
           <LanguageSelector />
         </div>
         <nav className="nav" aria-label={t.nav.mainAria}>
