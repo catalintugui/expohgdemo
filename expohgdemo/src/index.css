@@ -2286,7 +2286,11 @@ button {
 
   .page-fit--exhibition > .hero {
     padding-block: var(--space-sm) var(--space-md);
-    flex-shrink: 0;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .page-fit--exhibition > .hero .hero__accent {
@@ -2303,10 +2307,11 @@ button {
     padding-block: var(--space-md);
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   .page-fit--exhibition > .statement .statement__inner {
-    flex: 1;
+    flex: 0 1 auto;
     min-height: 0;
     gap: var(--space-md);
   }
@@ -2320,8 +2325,12 @@ button {
   }
 
   .page-fit--exhibition > .visit {
-    flex-shrink: 0;
+    flex: 1 1 auto;
+    min-height: 0;
     padding-block: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .page-fit--exhibition > .visit .visit__grid {
