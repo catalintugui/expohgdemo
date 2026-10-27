@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: max(var(--space-sm), env(safe-area-inset-left, 0px))
+    max(var(--space-sm), env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 30rem) {
+  .container {
+    padding-inline: var(--space-md);
+  }
+}
+
+@media (min-width: 48rem) {
+  .container {
+    padding-inline: var(--space-lg);
+  }
+}
+
+.label {
+  font-size: var(--size-xs);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+}
+
+.label--link:hover {
+  color: var(--ink);
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+.rule--light {
+  border-top-color: var(--line-light);
+}

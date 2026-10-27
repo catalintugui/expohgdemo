@@ -11,7 +11,7 @@ import {
   DEFAULT_LOCALE,
   LOCALE_STORAGE_KEY,
   LOCALES,
-  translations,
+  loadTranslation,
 } from './translations'
 import type { Locale, Translation } from './types'
 
@@ -33,15 +33,28 @@ function readStoredLocale(): Locale {
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(readStoredLocale)
+  const [t, setT] = useState<Translation | null>(null)
 
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next)
     localStorage.setItem(LOCALE_STORAGE_KEY, next)
   }, [])
 
-  const t = translations[locale]
+  useEffect(() => {
+    let cancelled = false
+
+    loadTranslation(locale).then((translation) => {
+      if (!cancelled) setT(translation)
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [locale])
 
   useEffect(() => {
+    if (!t) return
+
     document.documentElement.lang = locale
     document.title = t.meta.title
 
@@ -52,9 +65,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, [locale, t])
 
   const value = useMemo(
-    () => ({ locale, setLocale, t }),
+    () => (t ? { locale, setLocale, t } : null),
     [locale, setLocale, t],
   )
+
+  if (!value) return null
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
 }

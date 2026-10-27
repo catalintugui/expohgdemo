@@ -1,0 +1,32 @@
+:root {
+  --bg: #ebe8e1;
+  --bg-alt: #e2dfd6;
+  --ink: #1a1a1a;
+  --ink-muted: #5c5a55;
+  --ink-faint: #8a8780;
+  --line: #1a1a1a;
+  --line-light: #c8c4bb;
+
+  --bauhaus-red: #b83232;
+  --bauhaus-blue: #1e3d6e;
+  --bauhaus-yellow: #c9a227;
+
+  --font: 'Jost', system-ui, sans-serif;
+  --size-xs: 0.9375rem;
+  --size-sm: 1.125rem;
+  --size-base: 1.21875rem;
+  --size-md: 1.40625rem;
+  --size-lg: 1.6875rem;
+
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+
+  --max-width: 68rem;
+  --header-height: 3.5rem;
+  --wall-size: clamp(0.7rem, 1.6vw, 0.95rem);
+  --wall-lh: 1.2;
+}

@@ -1,0 +1,229 @@
+/* About team */
+
+.about-team {
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid var(--line-light);
+}
+
+@media (min-width: 40rem) {
+  .about-team {
+    padding-block: var(--space-xl);
+  }
+}
+
+.about-team__grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 40rem) {
+  .about-team__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+.about-team__column {
+  display: grid;
+  gap: var(--space-md);
+  align-content: start;
+}
+
+@media (min-width: 40rem) {
+  .about-team__column {
+    gap: var(--space-lg);
+  }
+}
+
+.about-team__list {
+  margin-top: var(--space-xs);
+  display: grid;
+  gap: 0.35rem;
+  font-size: var(--size-sm);
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.about-contact__event {
+  margin-top: var(--space-lg);
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.about-contact__event a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--bg);
+  border-bottom: none;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.about-contact__event a span {
+  border-bottom: 1px solid rgba(235, 232, 225, 0.35);
+}
+
+.about-contact__event a:hover {
+  color: #b8b4ad;
+}
+
+.about-contact__event a:hover span {
+  border-bottom-color: #b8b4ad;
+}
+
+.about-contact__social {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: var(--space-xs);
+}
+
+.about-contact__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--bg);
+  width: fit-content;
+}
+
+.about-contact__social-link:hover {
+  color: #b8b4ad;
+}
+
+.about-contact__icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* About */
+
+.about {
+  padding-block: var(--space-lg);
+  border-top: 1px solid var(--line-light);
+}
+
+@media (min-width: 40rem) {
+  .about {
+    padding-block: var(--space-xl);
+  }
+}
+
+.about__inner {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 48rem) {
+  .about__inner {
+    grid-template-columns: 10rem 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+}
+
+.about__portrait-frame {
+  aspect-ratio: 3 / 4;
+  background: var(--bg-alt);
+  border: 1px solid var(--line-light);
+  position: relative;
+}
+
+.about__portrait-frame::before {
+  content: '';
+  position: absolute;
+  inset: var(--space-sm);
+  border: 1px solid var(--line-light);
+}
+
+.about__portrait-frame::after {
+  content: '';
+  position: absolute;
+  bottom: var(--space-sm);
+  right: var(--space-sm);
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--bauhaus-blue);
+  opacity: 0.85;
+}
+
+.about__role {
+  font-size: var(--size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  margin-top: 0.2rem;
+}
+
+.about__bio {
+  font-size: var(--size-sm);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin-top: var(--space-md);
+}
+
+.about__bio:first-of-type {
+  margin-top: var(--space-lg);
+}
+
+.about-details {
+  padding-block: var(--space-lg);
+  background: var(--bg-alt);
+  border-block: 1px solid var(--line-light);
+}
+
+@media (min-width: 40rem) {
+  .about-details {
+    padding-block: var(--space-xl);
+  }
+}
+
+.about-details__grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 40rem) {
+  .about-details__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .about-details__block:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 64rem) {
+  .about-details__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about-details__block:last-child {
+    grid-column: auto;
+  }
+}
+
+.about-details__block p {
+  font-size: var(--size-sm);
+  line-height: 1.6;
+  margin-top: var(--space-xs);
+  color: var(--ink-muted);
+}
+
+.about-details__block p strong {
+  display: block;
+  font-weight: 400;
+  color: var(--ink);
+  font-size: var(--size-base);
+  margin-bottom: 0.1rem;
+}
+
+.about-details__block a {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.about-details__block a:hover {
+  border-bottom-color: var(--ink);
+}

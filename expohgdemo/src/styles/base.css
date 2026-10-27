@@ -1,0 +1,130 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font);
+  font-size: var(--size-base);
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+  background: var(--bg);
+}
+
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: var(--size-lg);
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+h3 {
+  font-size: var(--size-base);
+  font-weight: 400;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--ink);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  max-height: 100svh;
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  overflow-y: auto;
+  min-height: 0;
+  padding-block: var(--space-sm);
+}
+
+.main:has(.visit) {
+  padding-bottom: 0;
+}
+
+@media (min-width: 48rem) {
+  .main {
+    padding-block: var(--space-md);
+    padding-bottom: 13px;
+  }
+
+  .main:has(.visit) {
+    padding-bottom: 0;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
