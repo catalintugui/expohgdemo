@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from '../i18n/I18nContext'
 import type { Project } from '../i18n/types'
 import { projectPathForProject } from '../lib/workPaths'
+import { HouseIcon } from './HouseIcon'
 
 type ProjectGridProps = {
   projects?: Project[]
@@ -24,7 +25,7 @@ export function ProjectGrid({ projects, limit }: ProjectGridProps) {
             className={
               project.hero
                 ? 'work-card__frame work-card__frame--has-image'
-                : 'work-card__frame'
+                : 'work-card__frame work-card__frame--placeholder'
             }
             role="img"
             aria-label={
@@ -39,7 +40,9 @@ export function ProjectGrid({ projects, limit }: ProjectGridProps) {
                 src={project.hero}
                 alt={project.title}
               />
-            ) : null}
+            ) : (
+              <HouseIcon className="work-card__placeholder-icon" />
+            )}
           </div>
           <div className="work-card__body">
             <span className="work-card__index">{project.index}</span>

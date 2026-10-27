@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
+import { HouseIcon } from '../components/HouseIcon'
 import { ProjectSlider } from '../components/ProjectSlider'
 import { useTranslation } from '../i18n/I18nContext'
 import { projectPathForProject, workPathForProject } from '../lib/workPaths'
 
 const DETAIL_ORDER = [
-  'category',
   'beneficiary',
   'authYear',
   'designYear',
   'archiveDocs',
-  'addressArchive',
   'addressCurrent',
   'collaborator',
   'buildingState',
@@ -22,7 +21,7 @@ const DETAIL_ORDER = [
 export function ProjectPage() {
   const { slug } = useParams<{ slug: string }>()
   const location = useLocation()
-  const { t, locale } = useTranslation()
+  const { t } = useTranslation()
   const [heroOpen, setHeroOpen] = useState(false)
 
   const project = t.projects.find((item) => item.slug === slug)
@@ -56,12 +55,8 @@ export function ProjectPage() {
 
   const workPath = workPathForProject(project)
 
-  const images =
-    project.images.filter(Boolean).length > 0
-      ? project.images.filter(Boolean)
-      : project.hero
-        ? [project.hero]
-        : Array.from({ length: 4 }, () => '')
+  const images = project.images.filter(Boolean)
+  const hasImages = images.length > 0
 
   const labels = t.projectPage.detailLabels
   const unknown = t.projectPage.unknown
@@ -70,10 +65,7 @@ export function ProjectPage() {
   const detailRows = DETAIL_ORDER.filter((key) => key in details).map((key) => {
     const raw = details[key as keyof typeof details]
     const value = typeof raw === 'string' && raw.trim() ? raw.trim() : unknown
-    let label = labels[key as keyof typeof labels]
-    if (key === 'addressArchive' && project.period === 'b') {
-      label = locale === 'ro' ? 'Adresa dosar' : 'File address'
-    }
+    const label = labels[key as keyof typeof labels]
     return { key, label, value }
   })
 
@@ -82,7 +74,11 @@ export function ProjectPage() {
       <section className="project-hero page-section">
         <div className="container project-hero__grid">
           <div
-            className="project-hero__media"
+            className={
+              project.hero
+                ? 'project-hero__media'
+                : 'project-hero__media project-hero__media--placeholder'
+            }
             role={project.hero ? undefined : 'img'}
             aria-label={
               project.hero
@@ -99,7 +95,9 @@ export function ProjectPage() {
               >
                 <img src={project.hero} alt={project.title} />
               </button>
-            ) : null}
+            ) : (
+              <HouseIcon className="project-hero__placeholder-icon" />
+            )}
           </div>
 
           <div className="project-hero__content">
@@ -127,18 +125,20 @@ export function ProjectPage() {
         </div>
       </section>
 
-      <section className="project-gallery page-section">
-        <div className="container">
-          <ProjectSlider
-            images={images}
-            title={project.title}
-            placeholderLabel={t.common.placeholderFor}
-            prevLabel={t.projectPage.prev}
-            nextLabel={t.projectPage.next}
-            closeLabel={t.projectPage.close}
-          />
-        </div>
-      </section>
+      {hasImages ? (
+        <section className="project-gallery page-section">
+          <div className="container">
+            <ProjectSlider
+              images={images}
+              title={project.title}
+              placeholderLabel={t.common.placeholderFor}
+              prevLabel={t.projectPage.prev}
+              nextLabel={t.projectPage.next}
+              closeLabel={t.projectPage.close}
+            />
+          </div>
+        </section>
+      ) : null}
 
       <div className="container project-back">
         <Link to={workPath}>{t.projectPage.back}</Link>
