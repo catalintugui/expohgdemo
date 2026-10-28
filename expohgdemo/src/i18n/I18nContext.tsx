@@ -53,16 +53,8 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, [locale])
 
   useEffect(() => {
-    if (!t) return
-
     document.documentElement.lang = locale
-    document.title = t.meta.title
-
-    const description = document.querySelector('meta[name="description"]')
-    if (description) {
-      description.setAttribute('content', t.meta.description)
-    }
-  }, [locale, t])
+  }, [locale])
 
   const value = useMemo(
     () => (t ? { locale, setLocale, t } : null),

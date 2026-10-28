@@ -1,6 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import { BauhausAccent } from '../components/BauhausAccent'
 import { HouseIcon } from '../components/HouseIcon'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { useTranslation } from '../i18n/I18nContext'
 import { projectPathForProject } from '../lib/workPaths'
 import { searchProjects } from '../lib/searchProjects'
@@ -14,6 +15,13 @@ export function SearchPage() {
   const [searchParams] = useSearchParams()
   const query = searchParams.get('q')?.trim() ?? ''
   const results = query ? searchProjects(t.projects, query) : []
+
+  usePageMeta({
+    title: `${t.searchPage.heading} — ${t.architect.name}`,
+    description: t.meta.description,
+    path: '/search',
+    noIndex: true,
+  })
 
   const countLabel =
     results.length === 1

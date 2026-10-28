@@ -3,7 +3,9 @@ import { createPortal } from 'react-dom'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { HouseIcon } from '../components/HouseIcon'
 import { ProjectSlider } from '../components/ProjectSlider'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { useTranslation } from '../i18n/I18nContext'
+import { absoluteUrl } from '../lib/site'
 import { projectPathForProject, workPathForProject } from '../lib/workPaths'
 
 const DETAIL_ORDER = [
@@ -25,6 +27,33 @@ export function ProjectPage() {
   const [heroOpen, setHeroOpen] = useState(false)
 
   const project = t.projects.find((item) => item.slug === slug)
+  const canonicalPath = project
+    ? projectPathForProject(project)
+    : '/work/romania/housing'
+  const detailDescription =
+    typeof project?.details?.description === 'string'
+      ? project.details.description.trim()
+      : ''
+  const firstImage = project?.images?.find(Boolean)
+  const ogImage = firstImage
+    ? firstImage.startsWith('http')
+      ? firstImage
+      : absoluteUrl(firstImage)
+    : undefined
+
+  usePageMeta({
+    title: project
+      ? `${project.title} — ${t.architect.name}`
+      : t.meta.title,
+    description:
+      detailDescription ||
+      (project
+        ? `${project.title}. ${t.meta.description}`
+        : t.meta.description),
+    path: project ? canonicalPath : '/',
+    image: ogImage,
+    noIndex: !project,
+  })
 
   useEffect(() => {
     if (!heroOpen) return
@@ -47,8 +76,6 @@ export function ProjectPage() {
     return <Navigate to="/work/romania/housing" replace />
   }
 
-  const canonicalPath = projectPathForProject(project)
-
   if (location.pathname !== canonicalPath) {
     return <Navigate to={canonicalPath} replace />
   }
@@ -62,7 +89,14 @@ export function ProjectPage() {
   const unknown = t.projectPage.unknown
   const details = project.details ?? {}
 
-  const detailRows = DETAIL_ORDER.filter((key) => key in details).map((key) => {
+  const detailRows = DETAIL_ORDER.filter((key) => {
+    if (!(key in details)) return false
+    const raw = details[key as keyof typeof details]
+    if (key === 'mapsLink') {
+      return typeof raw === 'string' && /^https?:\/\//i.test(raw.trim())
+    }
+    return true
+  }).map((key) => {
     const raw = details[key as keyof typeof details]
     const value = typeof raw === 'string' && raw.trim() ? raw.trim() : unknown
     const label = labels[key as keyof typeof labels]
@@ -108,15 +142,20 @@ export function ProjectPage() {
             <div className="project-hero__body">
               {detailRows.map(({ key, label, value }) => (
                 <p key={key}>
-                  <strong className="project-hero__label">{label}</strong>:{' '}
-                  {key === 'mapsLink' &&
-                  value !== unknown &&
-                  /^https?:\/\//i.test(value) ? (
-                    <a href={value} target="_blank" rel="noreferrer">
-                      {value}
+                  {key === 'mapsLink' ? (
+                    <a
+                      className="project-hero__maps-link"
+                      href={value}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {label}
                     </a>
                   ) : (
-                    value
+                    <>
+                      <strong className="project-hero__label">{label}</strong>:{' '}
+                      {value}
+                    </>
                   )}
                 </p>
               ))}

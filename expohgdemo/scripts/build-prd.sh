@@ -19,10 +19,17 @@ echo "→ Cleaning $DIST_DIR"
 rm -rf "$DIST_DIR"
 
 echo "→ Building (mode: production)…"
-NODE_ENV=production npm run build -- --mode production
+NODE_ENV=production npx tsc -b
+NODE_ENV=production npx vite build --mode production
+node scripts/generate-seo.mjs
 
 if [[ ! -f "$DIST_DIR/index.html" ]]; then
   echo "✗ Build failed: $DIST_DIR/index.html not found" >&2
+  exit 1
+fi
+
+if [[ ! -f "$DIST_DIR/sitemap.xml" ]]; then
+  echo "✗ Build failed: $DIST_DIR/sitemap.xml not found" >&2
   exit 1
 fi
 

@@ -1,10 +1,17 @@
 import { BauhausAccent } from '../components/BauhausAccent'
 import { ExhibitionEventLink } from '../components/ExhibitionEventLink'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { useTranslation } from '../i18n/I18nContext'
 
 export function AboutPage() {
   const { t } = useTranslation()
   const page = t.aboutPage
+
+  usePageMeta({
+    title: `${page.heading} — ${t.architect.name}`,
+    description: page.lead,
+    path: '/about',
+  })
 
   return (
     <>

@@ -1,10 +1,17 @@
 import { BauhausAccent } from '../components/BauhausAccent'
 import { ExhibitionEventLink } from '../components/ExhibitionEventLink'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { useTranslation } from '../i18n/I18nContext'
 
 export function ExhibitionPage() {
   const { t } = useTranslation()
   const { exhibition: expo, exhibitionPage: page } = t
+
+  usePageMeta({
+    title: `${page.heading} — ${t.architect.name}`,
+    description: page.lead,
+    path: '/exhibition',
+  })
 
   return (
     <div className="page-fit page-fit--exhibition">

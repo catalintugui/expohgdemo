@@ -147,6 +147,16 @@
   color: var(--ink);
 }
 
+.project-hero__maps-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.project-hero__maps-link:hover {
+  color: var(--bauhaus-red);
+}
+
 .project-gallery {
   padding-block: var(--space-md) var(--space-lg);
 }

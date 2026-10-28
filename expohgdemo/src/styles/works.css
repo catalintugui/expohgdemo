@@ -161,12 +161,6 @@
   flex: 1;
 }
 
-.work-card__index {
-  font-size: var(--size-xs);
-  color: var(--ink-faint);
-  letter-spacing: 0.1em;
-}
-
 .work-card__meta {
   font-size: var(--size-xs);
   letter-spacing: 0.06em;

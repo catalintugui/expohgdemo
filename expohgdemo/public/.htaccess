@@ -5,9 +5,10 @@
 # this directive is enough if ErrorDocument is allowed.
 
 Options -Indexes
+DirectoryIndex index.html
 
-# Single-page app: serve index.html for unknown paths when the
-# request is not for a real file/folder or the 404 page itself.
+# Prefer prerendered route folders (e.g. /about/index.html) when present.
+# Fall back to the SPA shell for unknown client-side routes.
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -16,7 +17,7 @@ Options -Indexes
   RewriteRule ^404\.shtml$ - [L]
   RewriteRule ^general-error\.shtml$ - [L]
 
-  # Existing files and directories as-is
+  # Existing files and directories as-is (covers prerendered */index.html)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [L]

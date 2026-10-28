@@ -1,7 +1,20 @@
 {
   "meta": {
-    "title": "Arhiva Digitală Haralamb Georgescu",
-    "description": "Arhiva digitală a arhitectului Haralamb H. (Bubi) Georgescu. Arhivă digitală finanțată de Uniunea Arhitecților din România."
+    "title": "Haralamb Georgescu — Arhiva Digitală",
+    "description": "Arhiva digitală a arhitectului Haralamb H. (Bubi) Georgescu (1908–1977): proiecte, desene și documente din România și Statele Unite. Finanțată de Uniunea Arhitecților din România."
+  },
+  "homePage": {
+    "posterAria": "Expoziție Haralamb H. (Bubi) Georgescu",
+    "posterHeading": "Expoziție Haralamb H. (Bubi) Georgescu",
+    "heading": "Arhitect modernist între România și Statele Unite",
+    "lead": "Haralamb H. (Bubi) Georgescu (1908–1977), cunoscut și ca Harlan Georgesco, a fost un arhitect modernist a cărui activitate s-a desfășurat între România interbelică și Statele Unite postbelice.",
+    "body": [
+      "Arhiva digitală documentează proiecte, desene, fotografii și surse de arhivă identificate în cele două contexte geografice, de la colaborările cu Horia Creangă până la opera din California.",
+      "Platforma însoțește expoziția „Haralamb (Bubi) Georgescu. Orizonturi moderniste între România și Statele Unite ale Americii”, prezentată la Universitatea de Arhitectură și Urbanism „Ion Mincu” din București."
+    ],
+    "exploreExhibition": "Expoziție",
+    "exploreWork": "Lucrări",
+    "exploreAbout": "Despre arhivă"
   },
   "nav": {
     "homepage": "Acasă",

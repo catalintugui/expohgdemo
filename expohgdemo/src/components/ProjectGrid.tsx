@@ -45,7 +45,6 @@ export function ProjectGrid({ projects, limit }: ProjectGridProps) {
             )}
           </div>
           <div className="work-card__body">
-            <span className="work-card__index">{project.index}</span>
             <h3>{project.title}</h3>
           </div>
         </Link>

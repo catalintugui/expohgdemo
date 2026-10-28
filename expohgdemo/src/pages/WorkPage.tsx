@@ -1,11 +1,13 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { BauhausAccent } from '../components/BauhausAccent'
 import { ProjectGrid } from '../components/ProjectGrid'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { useTranslation } from '../i18n/I18nContext'
 import type { Project } from '../i18n/types'
 import {
   isWorkCategorySlug,
   WORK_CATEGORY_LABEL_KEYS,
+  WORK_PERIODS,
   type WorkCategorySlug,
 } from '../lib/workCategories'
 import {
@@ -13,6 +15,7 @@ import {
   WORK_SECTION_LABEL_KEYS,
   WORK_SECTIONS_BY_CATEGORY,
 } from '../lib/workSections'
+import { workPath } from '../lib/workPaths'
 
 type WorkPageProps = {
   period: Project['period']
@@ -27,11 +30,12 @@ export function WorkPage({ period }: WorkPageProps) {
   const { t } = useTranslation()
   const { category: categoryParam } = useParams<{ category?: string }>()
 
-  if (categoryParam && !isWorkCategorySlug(categoryParam)) {
-    return <Navigate to={period === 'a' ? '/work/romania/housing' : '/work/usa/housing'} replace />
-  }
+  const categoryValid =
+    !categoryParam || isWorkCategorySlug(categoryParam)
+  const category = categoryValid
+    ? (categoryParam as WorkCategorySlug | undefined)
+    : undefined
 
-  const category = categoryParam as WorkCategorySlug | undefined
   const projects = t.projects.filter(
     (project) =>
       project.period === period && (!category || project.category === category),
@@ -68,6 +72,30 @@ export function WorkPage({ period }: WorkPageProps) {
   const metaLabel = categoryLabel
     ? `${section.subtitle} · ${categoryLabel}`
     : section.subtitle
+
+  const periodSlug =
+    WORK_PERIODS.find((entry) => entry.period === period)?.slug ?? 'romania'
+  const path = category
+    ? workPath(periodSlug, category)
+    : `/work/${periodSlug}`
+  const titleParts = [categoryLabel, section.title, t.architect.name].filter(
+    Boolean,
+  )
+
+  usePageMeta({
+    title: titleParts.join(' — '),
+    description: `${t.workPage.lead} ${metaLabel}.`,
+    path,
+  })
+
+  if (!categoryValid) {
+    return (
+      <Navigate
+        to={period === 'a' ? '/work/romania/housing' : '/work/usa/housing'}
+        replace
+      />
+    )
+  }
 
   return (
     <>

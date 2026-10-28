@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { useTranslation } from '../i18n/I18nContext'
 
 export function NotFoundPage() {
   const { t } = useTranslation()
+
+  usePageMeta({
+    title: `404 — ${t.architect.name}`,
+    description: t.notFound.message,
+    path: '/404',
+    noIndex: true,
+  })
 
   return (
     <section className="not-found" aria-labelledby="not-found-heading">

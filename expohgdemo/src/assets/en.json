@@ -1,7 +1,20 @@
 {
   "meta": {
-    "title": "Arhiva Digitală Haralamb Georgescu",
-    "description": "Arhiva digitală a arhitectului Haralamb H. (Bubi) Georgescu. Arhivă digitală finanțată de Uniunea Arhitecților din România."
+    "title": "Haralamb Georgescu — Digital Archive",
+    "description": "Digital archive of architect Haralamb H. (Bubi) Georgescu (1908–1977): projects, drawings, and documents from Romania and the United States. Supported by the Union of Architects of Romania."
+  },
+  "homePage": {
+    "posterAria": "Exhibition Haralamb H. (Bubi) Georgescu",
+    "posterHeading": "Exhibition Haralamb H. (Bubi) Georgescu",
+    "heading": "Modernist architect between Romania and the United States",
+    "lead": "Haralamb H. (Bubi) Georgescu (1908–1977), also known as Harlan Georgesco, was a modernist architect whose career unfolded between interwar Romania and the postwar United States.",
+    "body": [
+      "The digital archive documents projects, drawings, photographs, and archival sources identified across both geographical contexts—from collaborations with Horia Creangă to his work in California.",
+      "The platform accompanies the exhibition “Haralamb (Bubi) Georgescu. Modernist Horizons between Romania and the United States of America,” presented at the “Ion Mincu” University of Architecture and Urban Planning in Bucharest."
+    ],
+    "exploreExhibition": "Exhibition",
+    "exploreWork": "Works",
+    "exploreAbout": "About the archive"
   },
   "nav": {
     "homepage": "Homepage",
