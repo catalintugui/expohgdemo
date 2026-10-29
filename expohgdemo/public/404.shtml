@@ -160,6 +160,111 @@
         z-index: 20;
       }
 
+      .header__search-slot {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: var(--space-xs);
+      }
+
+      .search-expand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        z-index: 2;
+      }
+
+      .search-expand__toggle {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        color: var(--ink-muted);
+        background: transparent;
+        border: none;
+        transition: color 0.15s;
+      }
+
+      .search-expand__toggle:hover {
+        color: var(--ink);
+      }
+
+      .search-expand__toggle:focus-visible {
+        outline: 1px solid var(--ink);
+        outline-offset: 2px;
+      }
+
+      .search-expand__icon {
+        display: block;
+        width: 1.15rem;
+        height: 1.15rem;
+      }
+
+      .search-expand__input {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0 2.5rem 0 0;
+        border: none;
+        border-bottom: 1px solid var(--line-light);
+        border-radius: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font);
+        font-size: var(--size-xs);
+        font-weight: 300;
+        letter-spacing: 0.06em;
+        line-height: 1.4;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: scaleX(0);
+        transform-origin: right center;
+        pointer-events: none;
+        transition:
+          opacity 0.2s ease,
+          transform 0.28s ease;
+      }
+
+      .search-expand__input::placeholder {
+        color: var(--ink-faint);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .search-expand__input::-webkit-search-decoration,
+      .search-expand__input::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+      }
+
+      .search-expand__input:focus {
+        outline: none;
+      }
+
+      .search-expand.is-open .search-expand__input {
+        opacity: 1;
+        transform: scaleX(1);
+        pointer-events: auto;
+      }
+
+      .header__search-slot:has(.search-expand.is-open) .header__title {
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .search-expand.is-open .search-expand__toggle {
+        color: var(--ink);
+      }
+
       @media (min-width: 48rem) {
         .header__inner {
           flex-direction: row;
@@ -169,10 +274,9 @@
           padding-block: var(--space-md);
         }
 
-        .header__top {
+        .header__top,
+        .header__search-slot {
           display: contents;
-          align-items: flex-start;
-          gap: var(--space-md);
         }
 
         .header__title {
@@ -187,20 +291,68 @@
           letter-spacing: 0.02em;
         }
 
-        .lang-selector {
-          order: 3;
-        }
-
         .nav {
           order: 2;
           flex: 0 1 auto;
           margin-left: auto;
           margin-right: var(--space-md);
         }
+
+        .search-expand {
+          position: relative;
+          order: 3;
+        }
+
+        .lang-selector {
+          order: 4;
+        }
+
+        .search-expand__toggle {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        .search-expand__input {
+          padding: 0;
+        }
+
+        .header__inner:has(.search-expand.is-open) .nav {
+          visibility: hidden;
+          position: absolute;
+          pointer-events: none;
+        }
+
+        .header__inner:has(.search-expand.is-open) .header__title {
+          visibility: visible;
+          pointer-events: auto;
+        }
+
+        .search-expand.is-open {
+          order: 2;
+          flex: 1 1 auto;
+          margin-left: auto;
+          margin-right: var(--space-md);
+          justify-content: flex-end;
+          gap: var(--space-xs);
+        }
+
+        .search-expand.is-open .search-expand__input {
+          position: static;
+          inset: auto;
+          flex: 1 1 auto;
+          width: auto;
+          min-width: 0;
+          transform: none;
+          padding-inline: 0 0.25rem;
+        }
       }
 
       @media (min-width: 64rem) {
         .nav {
+          margin-right: var(--space-lg);
+        }
+
+        .search-expand.is-open {
           margin-right: var(--space-lg);
         }
       }
@@ -218,7 +370,7 @@
         font-weight: 300;
         text-transform: uppercase;
         letter-spacing: 0.12em;
-        color: var(--ink-faint);
+        color: var(--ink-muted);
       }
 
       @media (min-width: 30rem) {
@@ -639,10 +791,10 @@
       @media (min-width: 48rem) {
         .nav-dropdown__submenu {
           position: absolute;
-          top: 0;
-          left: 100%;
+          top: -1px;
+          left: calc(100% + 0.25rem);
           min-width: 14rem;
-          padding: 0 0 0 0.25rem;
+          padding: 0;
           background: transparent;
           border-top: none;
           max-height: none;
@@ -653,7 +805,7 @@
           content: '';
           position: absolute;
           top: 0;
-          left: 0;
+          left: -0.25rem;
           width: 0.25rem;
           height: 100%;
         }
@@ -711,6 +863,8 @@
       @media (min-width: 48rem) {
         .nav-dropdown__submenu a {
           padding: 0.65rem 0.75rem;
+          font-weight: 400;
+          line-height: 1.35;
           background: var(--bg);
           white-space: nowrap;
         }
@@ -1044,10 +1198,56 @@
     <header class="header">
       <div class="container header__inner">
         <div class="header__top">
-          <a href="/" class="header__title">
-            <span data-i18n="architect.tagline">arhiva</span>
-            <h1 data-i18n="architect.name">Haralamb Georgescu</h1>
-          </a>
+          <div class="header__search-slot">
+            <a href="/" class="header__title">
+              <span data-i18n="architect.tagline">arhiva</span>
+              <h1 data-i18n="architect.name">Haralamb Georgescu</h1>
+            </a>
+
+            <div class="search-expand" id="search-expand">
+              <button
+                type="button"
+                class="search-expand__toggle"
+                id="search-expand-toggle"
+                aria-label="Căutare"
+                aria-expanded="false"
+                data-i18n-aria="nav.searchAria"
+              >
+                <svg
+                  class="search-expand__icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="10.5"
+                    cy="10.5"
+                    r="5.75"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M15.25 15.25 20 20"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+
+              <input
+                type="search"
+                class="search-expand__input"
+                id="search-expand-input"
+                placeholder="Căutare"
+                aria-label="Căutare"
+                data-i18n-placeholder="nav.searchPlaceholder"
+                data-i18n-aria="nav.searchAria"
+                tabindex="-1"
+              />
+            </div>
+          </div>
 
           <div class="lang-selector" id="lang-selector">
             <div class="lang-dropdown">
@@ -1163,7 +1363,7 @@
     <main class="main">
       <div class="container error">
         <p class="error__code">404</p>
-        <p class="error__text" data-i18n="error.message">Pagina pe care o căutați nu există.</p>
+        <p class="error__text" data-i18n="error.message">Ceva nu a funcționat.</p>
         <a class="error__link" href="/" data-i18n="error.homeLink">Înapoi la pagina principală</a>
       </div>
     </main>
@@ -1241,6 +1441,8 @@
               about: 'Despre noi',
               mainAria: 'Principal',
               languageAria: 'Limbă',
+              searchAria: 'Căutare',
+              searchPlaceholder: 'Căutare',
             },
             architect: {
               name: 'Haralamb Georgescu',
@@ -1273,6 +1475,8 @@
               about: 'About us',
               mainAria: 'Main',
               languageAria: 'Language',
+              searchAria: 'Search',
+              searchPlaceholder: 'Search',
             },
             architect: {
               name: 'Haralamb Georgescu',
@@ -1325,6 +1529,11 @@
           document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
             var value = getNested(t, el.getAttribute('data-i18n-alt'));
             if (value) el.setAttribute('alt', value);
+          });
+
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+            var value = getNested(t, el.getAttribute('data-i18n-placeholder'));
+            if (value) el.setAttribute('placeholder', value);
           });
 
           var label = document.getElementById('lang-dropdown-label');
@@ -1400,6 +1609,53 @@
           });
         }
 
+        function closeSearchExpand() {
+          var root = document.getElementById('search-expand');
+          var toggle = document.getElementById('search-expand-toggle');
+          var input = document.getElementById('search-expand-input');
+          if (!root || !toggle || !input) return;
+          root.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          input.tabIndex = -1;
+        }
+
+        function initSearchExpand() {
+          var root = document.getElementById('search-expand');
+          var toggle = document.getElementById('search-expand-toggle');
+          var input = document.getElementById('search-expand-input');
+          if (!root || !toggle || !input) return;
+
+          function submitSearch() {
+            var trimmed = input.value.trim();
+            if (!trimmed) return;
+            closeSearchExpand();
+            window.location.href = '/search?q=' + encodeURIComponent(trimmed);
+          }
+
+          toggle.addEventListener('click', function () {
+            var isOpen = root.classList.contains('is-open');
+            if (!isOpen) {
+              root.classList.add('is-open');
+              toggle.setAttribute('aria-expanded', 'true');
+              input.tabIndex = 0;
+              input.focus();
+              return;
+            }
+            if (input.value.trim()) {
+              submitSearch();
+              return;
+            }
+            closeSearchExpand();
+          });
+
+          input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              submitSearch();
+            }
+          });
+        }
+
         function initLangSelector() {
           var root = document.getElementById('lang-selector');
           var trigger = document.getElementById('lang-dropdown-trigger');
@@ -1432,18 +1688,23 @@
             if (!document.getElementById('work-dropdown')?.contains(event.target)) {
               if (!DESKTOP_MQ.matches) closeWorkDropdown();
             }
+            if (!document.getElementById('search-expand')?.contains(event.target)) {
+              closeSearchExpand();
+            }
           });
 
           document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
               closeLangMenu();
               closeWorkDropdown();
+              closeSearchExpand();
             }
           });
         }
 
         applyLocale(readLocale());
         initWorkDropdown();
+        initSearchExpand();
         initLangSelector();
       })();
     </script>
