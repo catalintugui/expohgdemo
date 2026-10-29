@@ -1461,7 +1461,7 @@
               uarAlt: 'Uniunea Arhitecților din România',
             },
             error: {
-              message: 'Pagina pe care o căutați nu există.',
+              message: 'Ceva nu a funcționat.',
               homeLink: 'Înapoi la pagina principală',
             },
           },
