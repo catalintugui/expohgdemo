@@ -4,6 +4,9 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-poster.jpg`
 
 export function absoluteUrl(path: string) {
   if (!path || path === '/') return `${SITE_URL}/`
-  const normalized = path.startsWith('/') ? path : `/${path}`
+  let normalized = path.startsWith('/') ? path : `/${path}`
+  // Live host 301s page URLs to a trailing slash; keep sitemap/canonicals final.
+  const isFile = /\.[a-z0-9]+$/i.test(normalized)
+  if (!isFile && !normalized.endsWith('/')) normalized += '/'
   return `${SITE_URL}${normalized}`
 }

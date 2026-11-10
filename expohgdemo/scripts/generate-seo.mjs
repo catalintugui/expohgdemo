@@ -26,7 +26,11 @@ function escapeHtml(value) {
 
 function absoluteUrl(pathname) {
   if (!pathname || pathname === '/') return `${SITE_URL}/`
-  return `${SITE_URL}${pathname.startsWith('/') ? pathname : `/${pathname}`}`
+  let normalized = pathname.startsWith('/') ? pathname : `/${pathname}`
+  // Live host 301s page URLs to a trailing slash; keep sitemap/canonicals final.
+  const isFile = /\.[a-z0-9]+$/i.test(normalized)
+  if (!isFile && !normalized.endsWith('/')) normalized += '/'
+  return `${SITE_URL}${normalized}`
 }
 
 function replaceMeta(html, { title, description, path: routePath, image }) {
